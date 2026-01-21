@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  rfp-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rfp-monitor-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data:ro  # Read-only para seguridad
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    labels:
+      # Traefik configuration
+      - "traefik.enable=true"
+      - "traefik.http.routers.rfp-monitor.rule=Host(`rfp.sociopublico.com`)"
+      - "traefik.http.routers.rfp-monitor.entrypoints=websecure"
+      - "traefik.http.routers.rfp-monitor.tls=true"
+      - "traefik.http.routers.rfp-monitor.tls.certresolver=letsencrypt"
+      - "traefik.http.services.rfp-monitor.loadbalancer.server.port=3000"
+      # Health check
+      - "traefik.http.routers.rfp-monitor.middlewares=rfp-monitor-headers"
+      - "traefik.http.middlewares.rfp-monitor-headers.headers.customrequestheaders.X-Forwarded-Proto=https"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
