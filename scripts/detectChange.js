@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const fs = require('fs').promises;
 const path = require('path');
 const HistoryLogger = require('./historyLogger');
+const { loadKeywords } = require('./loadKeywords');
 
 const DIFFS_DIR = path.join(__dirname, '..', 'data', 'diffs');
 const TEXT_DIR = path.join(__dirname, '..', 'data', 'snapshots', 'text');
@@ -131,6 +132,30 @@ function generateTextDiff(oldText, newText) {
 }
 
 /**
+ * Encuentra keywords en el texto (similar a analyzeContent pero más simple)
+ * @param {string} text - Texto a analizar
+ * @param {Array<string>} keywords - Keywords a buscar
+ * @returns {Array<string>} - Keywords encontradas
+ */
+function findKeywordsInText(text, keywords) {
+  if (!keywords || keywords.length === 0) {
+    return [];
+  }
+  
+  const normalizedText = text.toLowerCase();
+  const found = new Set();
+  
+  for (const keyword of keywords) {
+    const regex = new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+    if (regex.test(normalizedText)) {
+      found.add(keyword.toLowerCase());
+    }
+  }
+  
+  return Array.from(found);
+}
+
+/**
  * Detecta cambios en el texto de una URL comparando con el snapshot anterior
  * @param {string} url - URL procesada
  * @param {string} slug - Slug de la URL
@@ -146,12 +171,22 @@ async function detectChange(url, slug, currentText) {
   
   // Si no hay histórico previo, es la primera vez
   if (!lastEvent || !lastEvent.textHash) {
+    // Detectar keywords en el texto inicial
+    let keywordsInChanges = [];
+    try {
+      const allKeywords = await loadKeywords();
+      keywordsInChanges = findKeywordsInText(currentText, allKeywords);
+    } catch (error) {
+      console.warn('⚠️  Error al cargar keywords:', error.message);
+    }
+    
     return {
       hasChanged: false,
       changeRatio: 0,
       textHash: currentHash,
       textLength: currentNormalized.length,
-      isFirstRun: true
+      isFirstRun: true,
+      keywordsInChanges: keywordsInChanges
     };
   }
   
@@ -159,12 +194,22 @@ async function detectChange(url, slug, currentText) {
   const hashChanged = lastEvent.textHash !== currentHash;
   
   if (!hashChanged) {
+    // Aunque no haya cambios, detectar keywords en el texto actual
+    let keywordsInChanges = [];
+    try {
+      const allKeywords = await loadKeywords();
+      keywordsInChanges = findKeywordsInText(currentText, allKeywords);
+    } catch (error) {
+      console.warn('⚠️  Error al cargar keywords:', error.message);
+    }
+    
     return {
       hasChanged: false,
       changeRatio: 0,
       textHash: currentHash,
       textLength: currentNormalized.length,
-      isFirstRun: false
+      isFirstRun: false,
+      keywordsInChanges: keywordsInChanges
     };
   }
   
@@ -180,17 +225,38 @@ async function detectChange(url, slug, currentText) {
     const avgLength = (currentNormalized.length + (lastEvent.textLength || 1)) / 2;
     const estimatedRatio = avgLength > 0 ? Math.min(1, lengthDiff / avgLength) : 0.5;
     
+    // Detectar keywords aunque no tengamos el texto anterior completo
+    let keywordsInChanges = [];
+    try {
+      const allKeywords = await loadKeywords();
+      keywordsInChanges = findKeywordsInText(currentText, allKeywords);
+    } catch (error) {
+      console.warn('⚠️  Error al cargar keywords:', error.message);
+    }
+    
     return {
       hasChanged: true,
       changeRatio: estimatedRatio,
       textHash: currentHash,
       textLength: currentNormalized.length,
-      isFirstRun: false
+      isFirstRun: false,
+      keywordsInChanges: keywordsInChanges
     };
   }
   
   // Hay cambio, calcular ratio usando texto anterior real
   const changeRatio = calculateChangeRatio(oldText, currentText);
+  
+  // Detectar keywords en el texto nuevo (solo en los cambios)
+  let keywordsInChanges = [];
+  try {
+    const allKeywords = await loadKeywords();
+    // Extraer solo el texto que cambió (diferencia aproximada)
+    // Por simplicidad, analizamos el texto completo actual
+    keywordsInChanges = findKeywordsInText(currentText, allKeywords);
+  } catch (error) {
+    console.warn('⚠️  Error al cargar keywords para detectar cambios:', error.message);
+  }
   
   // Generar diff si hay cambio significativo
   if (changeRatio > 0.01) { // Solo generar diff si cambio > 1%
@@ -205,7 +271,8 @@ async function detectChange(url, slug, currentText) {
     changeRatio: changeRatio,
     textHash: currentHash,
     textLength: currentNormalized.length,
-    isFirstRun: false
+    isFirstRun: false,
+    keywordsInChanges: keywordsInChanges // Keywords encontradas en el texto actual
   };
 }
 

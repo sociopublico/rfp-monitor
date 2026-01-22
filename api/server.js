@@ -197,6 +197,118 @@ app.get('/api/history', async (req, res) => {
   }
 });
 
+/**
+ * Get summary for URLs (last scraping info)
+ * Query params: url (optional) - filter by specific URL
+ */
+app.get('/api/urls', async (req, res) => {
+  try {
+    const { url: filterUrl } = req.query;
+    
+    // Leer histórico
+    const content = await fs.readFile(HISTORY_FILE, 'utf-8');
+    const lines = content.split('\n').filter(line => line.trim());
+    
+    // Parsear eventos
+    const events = lines.map(line => {
+      try {
+        return JSON.parse(line);
+      } catch (error) {
+        return null;
+      }
+    }).filter(e => e !== null);
+    
+    // Agrupar por URL y obtener el último evento de cada una
+    const urlMap = new Map();
+    
+    for (const event of events) {
+      if (filterUrl && event.url !== filterUrl) {
+        continue;
+      }
+      
+      if (!urlMap.has(event.url)) {
+        urlMap.set(event.url, event);
+      } else {
+        const existing = urlMap.get(event.url);
+        const existingDate = new Date(existing.timestamp || 0);
+        const eventDate = new Date(event.timestamp || 0);
+        if (eventDate > existingDate) {
+          urlMap.set(event.url, event);
+        }
+      }
+    }
+    
+    // Convertir a array y construir respuesta
+    const results = Array.from(urlMap.values()).map(event => {
+      // Determinar status
+      let status = 'error';
+      if (event.status === 'success') {
+        if (!event.hasChanged) {
+          status = 'sin cambios';
+        } else {
+          // Determinar si cambios son relevantes
+          const changeRatio = event.changeRatio || 0;
+          const finalScore = event.finalScore || 0;
+          const minScore = 20; // Umbral mínimo
+          
+          if (finalScore >= minScore || changeRatio >= 0.05) {
+            status = 'cambios relevantes';
+          } else {
+            status = 'cambios irrelevantes';
+          }
+        }
+      }
+      
+      // Calcular caracteres cambiados (aproximado)
+      const textLength = event.textLength || 0;
+      const changeRatio = event.changeRatio || 0;
+      const changedChars = Math.round(textLength * changeRatio);
+      
+      return {
+        url: event.url,
+        status: status,
+        textLength: textLength,
+        changedChars: changedChars,
+        changeRatio: changeRatio,
+        keywords: event.keywordsInChanges || event.foundKeywords || [],
+        lastScraped: event.timestamp,
+        finalScore: event.finalScore || 0
+      };
+    });
+    
+    // Ordenar por URL
+    results.sort((a, b) => a.url.localeCompare(b.url));
+    
+    // Si se filtró por URL específica, devolver solo ese objeto
+    if (filterUrl && results.length === 1) {
+      res.json(results[0]);
+    } else if (filterUrl && results.length === 0) {
+      res.status(404).json({
+        error: 'URL not found',
+        message: `No se encontró información para la URL: ${filterUrl}`
+      });
+    } else {
+      res.json({
+        total: results.length,
+        urls: results
+      });
+    }
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      res.json({
+        total: 0,
+        urls: []
+      });
+    } else {
+      console.error('Error reading URLs summary:', error);
+      res.status(500).json({
+        error: 'Internal server error',
+        message: 'Failed to read URLs summary'
+      });
+    }
+  }
+});
+
 // Error handler
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);

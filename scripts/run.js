@@ -80,7 +80,9 @@ async function processUrl(page, url, existingMetadata) {
       textLength: changeInfo.textLength,
       hasChanged: changeInfo.hasChanged,
       changeRatio: changeInfo.changeRatio,
-      keywordHits: analysis.relevanceScore > 0 ? Math.ceil(analysis.relevanceScore / 15) : 0, // Aproximación
+      keywordHits: analysis.foundKeywords?.length || 0,
+      foundKeywords: analysis.foundKeywords || [],
+      keywordsInChanges: changeInfo.keywordsInChanges || [],
       finalScore: finalScore
     });
     

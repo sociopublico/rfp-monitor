@@ -1,4 +1,5 @@
 const config = require('../config/profile');
+const { loadKeywords } = require('./loadKeywords');
 
 /**
  * Analiza semánticamente si el contenido podría corresponder a una proposal/RFP relevante
@@ -12,9 +13,20 @@ const config = require('../config/profile');
  * @returns {boolean} hasOpportunity - Si detecta oportunidad relevante
  * @returns {number} relevanceScore - Score de relevancia (0-100)
  * @returns {string} reason - Razón explicativa del score
+ * @returns {Array<string>} foundKeywords - Keywords encontradas en el texto
  */
 async function analyzeRelevance(textSnippet, profileConfig = null) {
   const profile = profileConfig || config;
+  
+  // Cargar keywords del CSV
+  let allKeywords = [];
+  try {
+    allKeywords = await loadKeywords();
+  } catch (error) {
+    console.warn('⚠️  Error al cargar keywords del CSV, usando keywords del config:', error.message);
+    // Fallback a keywords del config
+    allKeywords = [...(profile.interestKeywords || []), ...(profile.rfpKeywords || [])];
+  }
   
   if (!textSnippet || typeof textSnippet !== 'string' || textSnippet.trim().length === 0) {
     return {
@@ -32,11 +44,22 @@ async function analyzeRelevance(textSnippet, profileConfig = null) {
   const maxLength = profile.settings?.maxSnippetLength || 5000;
   const analysisText = normalizedText.substring(0, maxLength);
   
-  // 1. Contar hits de keywords RFP
-  const rfpHits = countKeywordHits(analysisText, profile.rfpKeywords);
+  // 1. Encontrar keywords específicas en el texto
+  const foundKeywords = findKeywordsInText(analysisText, allKeywords);
   
-  // 2. Contar hits de keywords de interés temático
-  const interestHits = countKeywordHits(analysisText, profile.interestKeywords);
+  // 2. Separar keywords RFP de interés (usar config como referencia)
+  const rfpKeywords = profile.rfpKeywords || [];
+  const interestKeywords = profile.interestKeywords || [];
+  
+  const foundRfpKeywords = foundKeywords.filter(kw => 
+    rfpKeywords.some(rfp => rfp.toLowerCase() === kw)
+  );
+  const foundInterestKeywords = foundKeywords.filter(kw => 
+    interestKeywords.some(int => int.toLowerCase() === kw)
+  );
+  
+  const rfpHits = foundRfpKeywords.length;
+  const interestHits = foundInterestKeywords.length;
   
   // 3. Detectar fechas futuras (deadlines)
   const futureDates = profile.settings?.detectFutureDates 
@@ -87,8 +110,34 @@ async function analyzeRelevance(textSnippet, profileConfig = null) {
   return {
     hasOpportunity,
     relevanceScore: score,
-    reason
+    reason,
+    foundKeywords: foundKeywords, // Todas las keywords encontradas
+    foundRfpKeywords: foundRfpKeywords, // Solo keywords RFP
+    foundInterestKeywords: foundInterestKeywords // Solo keywords de interés
   };
+}
+
+/**
+ * Encuentra qué keywords aparecen en el texto
+ * @param {string} text - Texto normalizado
+ * @param {Array<string>} keywords - Array de keywords a buscar
+ * @returns {Array<string>} - Array de keywords encontradas (sin duplicados)
+ */
+function findKeywordsInText(text, keywords) {
+  if (!keywords || keywords.length === 0) {
+    return [];
+  }
+  
+  const found = new Set();
+  for (const keyword of keywords) {
+    // Buscar keyword como palabra completa (case insensitive)
+    const regex = new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+    if (regex.test(text)) {
+      found.add(keyword.toLowerCase());
+    }
+  }
+  
+  return Array.from(found);
 }
 
 /**
