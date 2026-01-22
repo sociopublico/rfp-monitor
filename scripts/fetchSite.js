@@ -49,28 +49,67 @@ async function createBrowser() {
       try {
         if (fs.existsSync(path)) {
           executablePath = path;
+          console.log(`✅ Chromium encontrado en: ${path}`);
           break;
         }
       } catch (e) {
         // Continuar buscando
       }
     }
+    
+    if (!executablePath) {
+      console.warn('⚠️  Chromium no encontrado en rutas estándar, Puppeteer intentará usar su Chrome descargado');
+    }
   }
   
-  const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: executablePath,
+  const launchOptions = {
+    headless: 'new', // Usar nuevo modo headless
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
+      '--disable-dev-shm-usage', // Usa /tmp en lugar de /dev/shm
       '--disable-accelerated-2d-canvas',
       '--no-first-run',
       '--no-zygote',
-      '--single-process', // Opcional: para entornos con recursos limitados
-      '--disable-gpu'
-    ]
+      '--disable-gpu',
+      '--disable-software-rasterizer',
+      '--disable-extensions',
+      '--disable-background-networking',
+      '--disable-background-timer-throttling',
+      '--disable-backgrounding-occluded-windows',
+      '--disable-breakpad',
+      '--disable-client-side-phishing-detection',
+      '--disable-default-apps',
+      '--disable-features=TranslateUI',
+      '--disable-hang-monitor',
+      '--disable-ipc-flooding-protection',
+      '--disable-popup-blocking',
+      '--disable-prompt-on-repost',
+      '--disable-renderer-backgrounding',
+      '--disable-sync',
+      '--disable-translate',
+      '--metrics-recording-only',
+      '--mute-audio',
+      '--no-default-browser-check',
+      '--no-pings',
+      '--use-fake-ui-for-media-stream',
+      '--use-fake-device-for-media-stream'
+    ],
+    ignoreHTTPSErrors: true
+  };
+  
+  // Solo agregar executablePath si fue encontrado
+  if (executablePath) {
+    launchOptions.executablePath = executablePath;
+  }
+  
+  console.log('🚀 Iniciando Chromium con opciones:', {
+    headless: launchOptions.headless,
+    executablePath: launchOptions.executablePath || 'default',
+    argsCount: launchOptions.args.length
   });
+  
+  const browser = await puppeteer.launch(launchOptions);
   
   const page = await browser.newPage();
   
