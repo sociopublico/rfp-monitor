@@ -31,9 +31,45 @@ async function fetchSiteHtml(page, url) {
  * @returns {Promise<Object>} - Objeto con browser y page
  */
 async function createBrowser() {
+  // Detectar si estamos en Docker/Alpine y usar Chromium del sistema
+  // En Alpine, Chromium puede estar en diferentes ubicaciones
+  const fs = require('fs');
+  let executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+  
+  if (!executablePath && process.platform === 'linux') {
+    // Probar diferentes ubicaciones comunes de Chromium
+    const possiblePaths = [
+      '/usr/bin/chromium-browser',
+      '/usr/bin/chromium',
+      '/usr/bin/google-chrome',
+      '/usr/bin/google-chrome-stable'
+    ];
+    
+    for (const path of possiblePaths) {
+      try {
+        if (fs.existsSync(path)) {
+          executablePath = path;
+          break;
+        }
+      } catch (e) {
+        // Continuar buscando
+      }
+    }
+  }
+  
   const browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    executablePath: executablePath,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--no-first-run',
+      '--no-zygote',
+      '--single-process', // Opcional: para entornos con recursos limitados
+      '--disable-gpu'
+    ]
   });
   
   const page = await browser.newPage();
