@@ -62,40 +62,30 @@ async function createBrowser() {
     }
   }
   
+  // Argumentos mínimos necesarios para Alpine/Docker
+  const chromeArgs = [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-gpu',
+    '--disable-software-rasterizer',
+    '--no-first-run',
+    '--no-zygote',
+    '--single-process', // Necesario en contenedores con recursos limitados
+    '--disable-extensions',
+    '--disable-background-networking',
+    '--disable-default-apps',
+    '--disable-sync',
+    '--metrics-recording-only',
+    '--mute-audio'
+  ];
+  
   const launchOptions = {
-    headless: 'new', // Usar nuevo modo headless
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage', // Usa /tmp en lugar de /dev/shm
-      '--disable-accelerated-2d-canvas',
-      '--no-first-run',
-      '--no-zygote',
-      '--disable-gpu',
-      '--disable-software-rasterizer',
-      '--disable-extensions',
-      '--disable-background-networking',
-      '--disable-background-timer-throttling',
-      '--disable-backgrounding-occluded-windows',
-      '--disable-breakpad',
-      '--disable-client-side-phishing-detection',
-      '--disable-default-apps',
-      '--disable-features=TranslateUI',
-      '--disable-hang-monitor',
-      '--disable-ipc-flooding-protection',
-      '--disable-popup-blocking',
-      '--disable-prompt-on-repost',
-      '--disable-renderer-backgrounding',
-      '--disable-sync',
-      '--disable-translate',
-      '--metrics-recording-only',
-      '--mute-audio',
-      '--no-default-browser-check',
-      '--no-pings',
-      '--use-fake-ui-for-media-stream',
-      '--use-fake-device-for-media-stream'
-    ],
-    ignoreHTTPSErrors: true
+    headless: true, // Modo headless estándar (más compatible que 'new')
+    args: chromeArgs,
+    ignoreHTTPSErrors: true,
+    timeout: 90000, // 90 segundos para iniciar (Alpine puede ser lento)
+    protocolTimeout: 120000 // 120 segundos para protocolo
   };
   
   // Solo agregar executablePath si fue encontrado
@@ -106,10 +96,37 @@ async function createBrowser() {
   console.log('🚀 Iniciando Chromium con opciones:', {
     headless: launchOptions.headless,
     executablePath: launchOptions.executablePath || 'default',
-    argsCount: launchOptions.args.length
+    argsCount: launchOptions.args.length,
+    timeout: launchOptions.timeout
   });
   
-  const browser = await puppeteer.launch(launchOptions);
+  // Verificar que el ejecutable existe y es ejecutable
+  if (executablePath) {
+    try {
+      const { execSync } = require('child_process');
+      execSync(`test -x "${executablePath}"`, { stdio: 'ignore' });
+      console.log(`✅ Chromium es ejecutable: ${executablePath}`);
+    } catch (e) {
+      console.warn(`⚠️  Chromium puede no ser ejecutable: ${executablePath}`);
+    }
+  }
+  
+  let browser;
+  try {
+    browser = await puppeteer.launch(launchOptions);
+    console.log('✅ Chromium iniciado correctamente');
+  } catch (error) {
+    console.error('❌ Error al iniciar Chromium:', error.message);
+    // Si falla con single-process, intentar sin él
+    if (launchOptions.args.includes('--single-process')) {
+      console.log('🔄 Reintentando sin --single-process...');
+      launchOptions.args = launchOptions.args.filter(arg => arg !== '--single-process');
+      browser = await puppeteer.launch(launchOptions);
+      console.log('✅ Chromium iniciado sin --single-process');
+    } else {
+      throw error;
+    }
+  }
   
   const page = await browser.newPage();
   
