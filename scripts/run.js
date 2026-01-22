@@ -216,9 +216,10 @@ async function main() {
         const metadata = await processUrl(page, row.link, existingMetadata);
         newMetadata.push(metadata);
         
-        // Pequeña pausa entre requests para no sobrecargar
+        // Pausa entre requests para no sobrecargar el servidor
         if (i < filteredRows.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          console.log('⏳ Esperando 10 segundos antes del siguiente sitio...');
+          await new Promise(resolve => setTimeout(resolve, 5000));
         }
       }
       
