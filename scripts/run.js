@@ -175,7 +175,7 @@ async function processUrl(page, url, existingMetadata) {
  * Función principal que orquesta todo el proceso
  */
 async function main() {
-  console.log('🚀 Iniciando proceso de scraping...\n');
+  console.log(`🚀 Iniciando proceso de scraping... ${new Date().toISOString()}\n`);
   
   try {
     // 1. Asegurar que los directorios existen
