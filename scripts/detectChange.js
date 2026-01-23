@@ -169,7 +169,7 @@ async function detectChange(url, slug, currentText) {
   // Buscar último evento en histórico
   const lastEvent = await HistoryLogger.getLastEventForUrl(url);
   
-  // Si no hay histórico previo, es la primera vez
+  // Si no hay histórico previo, es la primera vez (no comparar con nada)
   if (!lastEvent || !lastEvent.textHash) {
     // Detectar keywords en el texto inicial
     let keywordsInChanges = [];

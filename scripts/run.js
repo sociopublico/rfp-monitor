@@ -79,6 +79,7 @@ async function processUrl(page, url, existingMetadata) {
       textHash: changeInfo.textHash,
       textLength: changeInfo.textLength,
       hasChanged: changeInfo.hasChanged,
+      isFirstRun: changeInfo.isFirstRun || false,
       changeRatio: changeInfo.changeRatio,
       keywordHits: analysis.foundKeywords?.length || 0,
       foundKeywords: analysis.foundKeywords || [],

@@ -243,7 +243,10 @@ app.get('/api/urls', async (req, res) => {
       // Determinar status
       let status = 'error';
       if (event.status === 'success') {
-        if (!event.hasChanged) {
+        // Si es primera ejecución, mostrar status especial
+        if (event.isFirstRun) {
+          status = 'primera ejecución';
+        } else if (!event.hasChanged) {
           status = 'sin cambios';
         } else {
           // Determinar si cambios son relevantes
