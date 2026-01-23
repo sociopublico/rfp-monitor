@@ -22,10 +22,12 @@ async function analyzeRelevance(textSnippet, profileConfig = null) {
   let allKeywords = [];
   try {
     allKeywords = await loadKeywords();
+    console.log(`📚 Keywords cargadas del CSV: ${allKeywords.length} keywords`);
   } catch (error) {
     console.warn('⚠️  Error al cargar keywords del CSV, usando keywords del config:', error.message);
     // Fallback a keywords del config
     allKeywords = [...(profile.interestKeywords || []), ...(profile.rfpKeywords || [])];
+    console.log(`📚 Keywords del config: ${allKeywords.length} keywords`);
   }
   
   if (!textSnippet || typeof textSnippet !== 'string' || textSnippet.trim().length === 0) {
@@ -40,12 +42,16 @@ async function analyzeRelevance(textSnippet, profileConfig = null) {
   const normalizedText = textSnippet.toLowerCase();
   const textLength = normalizedText.length;
   
-  // Limitar longitud del snippet si es muy largo
-  const maxLength = profile.settings?.maxSnippetLength || 5000;
-  const analysisText = normalizedText.substring(0, maxLength);
+  // NO limitar el texto - analizar TODO el contenido para detectar todas las keywords
+  // (el límite anterior podía cortar keywords importantes)
+  const analysisText = normalizedText;
   
-  // 1. Encontrar keywords específicas en el texto
+  // 1. Encontrar keywords específicas en el texto completo
   const foundKeywords = findKeywordsInText(analysisText, allKeywords);
+  
+  if (foundKeywords.length > 0) {
+    console.log(`🔍 Keywords encontradas en texto (${foundKeywords.length}): ${foundKeywords.slice(0, 10).join(', ')}${foundKeywords.length > 10 ? '...' : ''}`);
+  }
   
   // 2. Separar keywords RFP de interés (usar config como referencia)
   const rfpKeywords = profile.rfpKeywords || [];

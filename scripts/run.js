@@ -133,13 +133,19 @@ async function processUrl(page, url, existingMetadata) {
     };
     
     // Log resumen
+    if (changeInfo.isFirstRun) {
+      console.log(`  🆕 Primera ejecución para esta URL`);
+    }
     if (changeInfo.hasChanged) {
       console.log(`  🔄 Cambio detectado (ratio: ${(changeInfo.changeRatio * 100).toFixed(1)}%)`);
     }
     if (analysis.hasOpportunity) {
       console.log(`  💡 Oportunidad detectada (score: ${analysis.relevanceScore}/100)`);
     }
-    console.log(`  📊 Final Score: ${finalScore}/100`);
+    if (analysis.foundKeywords && analysis.foundKeywords.length > 0) {
+      console.log(`  🔑 Keywords encontradas: ${analysis.foundKeywords.slice(0, 5).join(', ')}${analysis.foundKeywords.length > 5 ? '...' : ''} (${analysis.foundKeywords.length} total)`);
+    }
+    console.log(`  📊 Relevance Score: ${analysis.relevanceScore}/100 | Final Score: ${finalScore}/100`);
     console.log(`✅ Procesado: ${url} -> ${slug}`);
     
     return metadata;
