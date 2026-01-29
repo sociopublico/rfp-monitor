@@ -3,7 +3,7 @@ const http = require('http');
 const csv = require('csv-parser');
 const { isValidUrl } = require('./utils');
 
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRHDJfR9H6Zx0G-VPvdYQMWO7n8TbbdsCyxgfgc_3r8wks1-ic1H0dDoXCqSanVKq10yVzmhbdbj5hO/pub?gid=0&single=true&output=csv';
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQZIJlaIWq3EP38gapc_JGas5gPeE801zNpb8_X1ij1F8VED0ZA6ANSCgmo0ilj1ZlvVILEDDTnuwx7/pub?gid=0&single=true&output=csv';
 
 /**
  * Descarga el CSV desde la URL de Google Sheets

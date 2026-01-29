@@ -2,7 +2,7 @@ const https = require('https');
 const http = require('http');
 const csv = require('csv-parser');
 
-const KEYWORDS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRHDJfR9H6Zx0G-VPvdYQMWO7n8TbbdsCyxgfgc_3r8wks1-ic1H0dDoXCqSanVKq10yVzmhbdbj5hO/pub?gid=915784238&single=true&output=csv';
+const KEYWORDS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQZIJlaIWq3EP38gapc_JGas5gPeE801zNpb8_X1ij1F8VED0ZA6ANSCgmo0ilj1ZlvVILEDDTnuwx7/pub?gid=1294632680&single=true&output=csv';
 
 // Cache de keywords
 let cachedKeywords = null;
