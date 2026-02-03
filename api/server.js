@@ -9,7 +9,24 @@ const PORT = process.env.PORT || 3000;
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const STATUS_FILE = path.join(DATA_DIR, 'status', 'latest.json');
 const ALERTS_DIR = path.join(DATA_DIR, 'alerts');
+const DIFFS_DIR = path.join(DATA_DIR, 'diffs');
 const HISTORY_FILE = path.join(DATA_DIR, 'history', 'url-history.jsonl');
+
+/**
+ * Genera slug desde URL (misma lógica que scripts/utils.js)
+ */
+function slugFromUrl(url) {
+  try {
+    const urlObj = new URL(url);
+    let slug = urlObj.hostname.replace(/^www\./, '');
+    if (urlObj.pathname && urlObj.pathname !== '/') {
+      slug += urlObj.pathname.replace(/\/$/, '').replace(/[^a-zA-Z0-9]/g, '_').substring(0, 100);
+    }
+    return slug.replace(/_+/g, '_').replace(/^_|_$/g, '') || 'index';
+  } catch {
+    return url.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 50).replace(/^_|_$/g, '') || 'unknown';
+  }
+}
 
 // Middleware
 app.use(express.json());
@@ -309,6 +326,52 @@ app.get('/api/urls', async (req, res) => {
         message: 'Failed to read URLs summary'
       });
     }
+  }
+});
+
+/**
+ * Get the diff text of the last detected changes for a URL
+ * Query params: url (required) - the page URL
+ * Returns the content of data/diffs/{slug}.diff.txt
+ */
+app.get('/api/changes', async (req, res) => {
+  try {
+    const { url: targetUrl } = req.query;
+
+    if (!targetUrl || typeof targetUrl !== 'string' || targetUrl.trim() === '') {
+      return res.status(400).json({
+        error: 'Missing parameter',
+        message: 'Query parameter "url" is required. Example: /api/changes?url=https://example.com/page'
+      });
+    }
+
+    const slug = slugFromUrl(targetUrl.trim());
+    const diffPath = path.join(DIFFS_DIR, `${slug}.diff.txt`);
+
+    const content = await fs.readFile(diffPath, 'utf-8');
+
+    const accept = (req.headers.accept || '').toLowerCase();
+    if (accept.includes('text/plain')) {
+      res.type('text/plain').send(content);
+    } else {
+      res.json({
+        url: targetUrl.trim(),
+        slug,
+        diff: content
+      });
+    }
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return res.status(404).json({
+        error: 'Diff not found',
+        message: 'No hay diff guardado para esta URL. Solo existe cuando hubo cambios detectados.'
+      });
+    }
+    console.error('Error reading diff:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'Failed to read diff file'
+    });
   }
 });
 
