@@ -57,21 +57,27 @@ async function processUrl(page, url, existingMetadata) {
     const textPath = path.join(TEXT_DIR, `${slug}.txt`);
     await fs.writeFile(textPath, text, 'utf-8');
     
-    // === NUEVO: Detección de cambios ===
+    // === DETECCIÓN DE CAMBIOS ===
+    // Ahora detectChange busca keywords SOLO en el texto cambiado
     const changeInfo = await detectChange(url, slug, text);
     
-    // === NUEVO: Análisis semántico ===
+    // === ANÁLISIS SEMÁNTICO del texto completo ===
+    // (para referencia, pero las keywords que importan son las de cambios)
     const analysis = await analyzeRelevance(text, config);
     
-    // === NUEVO: Calcular scores ===
+    // === CALCULAR SCORES ===
+    // Ahora el score prioriza keywords encontradas en los cambios
     const changeScore = calculateChangeScore(changeInfo.changeRatio);
+    const keywordsInChangesCount = changeInfo.keywordsInChanges?.length || 0;
     const finalScore = calculateFinalScore(
       changeScore,
       analysis.relevanceScore,
-      changeInfo.hasChanged
+      changeInfo.hasChanged,
+      keywordsInChangesCount,
+      changeInfo.isFirstRun || false
     );
     
-    // === NUEVO: Registrar en histórico ===
+    // === REGISTRAR EN HISTÓRICO ===
     await HistoryLogger.logEvent({
       url: url,
       timestamp: timestamp,
@@ -81,13 +87,15 @@ async function processUrl(page, url, existingMetadata) {
       hasChanged: changeInfo.hasChanged,
       isFirstRun: changeInfo.isFirstRun || false,
       changeRatio: changeInfo.changeRatio,
+      changedChars: changeInfo.changedChars || 0,
       keywordHits: analysis.foundKeywords?.length || 0,
       foundKeywords: analysis.foundKeywords || [],
       keywordsInChanges: changeInfo.keywordsInChanges || [],
       finalScore: finalScore
     });
     
-    // === NUEVO: Generar alerta si es necesario ===
+    // === GENERAR ALERTA SI ES NECESARIO ===
+    // El umbral ahora es más bajo (30 puntos)
     let alertGenerated = false;
     if (shouldGenerateAlert(finalScore, config.analysisThresholds)) {
       try {
@@ -100,12 +108,17 @@ async function processUrl(page, url, existingMetadata) {
             relevanceScore: analysis.relevanceScore,
             finalScore: finalScore,
             hasChanged: changeInfo.hasChanged,
+            isFirstRun: changeInfo.isFirstRun || false,
             changeRatio: changeInfo.changeRatio,
-            keywordHits: Math.ceil(analysis.relevanceScore / 15)
+            changedChars: changeInfo.changedChars || 0,
+            textLength: changeInfo.textLength,
+            keywordHits: analysis.foundKeywords?.length || 0,
+            keywordsInChangesCount: keywordsInChangesCount
           }),
           scores: {
             changeScore: changeScore,
-            relevanceScore: analysis.relevanceScore
+            relevanceScore: analysis.relevanceScore,
+            keywordsInChangesCount: keywordsInChangesCount
           },
           analysis: analysis,
           change: changeInfo
@@ -127,8 +140,10 @@ async function processUrl(page, url, existingMetadata) {
       // Campos adicionales del nuevo sistema
       hasChanged: changeInfo.hasChanged,
       changeRatio: changeInfo.changeRatio,
+      changedChars: changeInfo.changedChars || 0,
       relevanceScore: analysis.relevanceScore,
       finalScore: finalScore,
+      keywordsInChanges: changeInfo.keywordsInChanges || [],
       alertGenerated: alertGenerated
     };
     
@@ -137,15 +152,21 @@ async function processUrl(page, url, existingMetadata) {
       console.log(`  🆕 Primera ejecución para esta URL`);
     }
     if (changeInfo.hasChanged) {
-      console.log(`  🔄 Cambio detectado (ratio: ${(changeInfo.changeRatio * 100).toFixed(1)}%)`);
+      const changedChars = changeInfo.changedChars || 0;
+      console.log(`  🔄 Cambio detectado: ${changedChars} caracteres (${(changeInfo.changeRatio * 100).toFixed(1)}%)`);
     }
-    if (analysis.hasOpportunity) {
-      console.log(`  💡 Oportunidad detectada (score: ${analysis.relevanceScore}/100)`);
+    
+    // Lo más importante: keywords EN los cambios
+    if (keywordsInChangesCount > 0) {
+      console.log(`  🎯 KEYWORDS EN CAMBIOS (${keywordsInChangesCount}): ${changeInfo.keywordsInChanges.slice(0, 5).join(', ')}${keywordsInChangesCount > 5 ? '...' : ''}`);
     }
+    
+    // Keywords en texto completo (referencia)
     if (analysis.foundKeywords && analysis.foundKeywords.length > 0) {
-      console.log(`  🔑 Keywords encontradas: ${analysis.foundKeywords.slice(0, 5).join(', ')}${analysis.foundKeywords.length > 5 ? '...' : ''} (${analysis.foundKeywords.length} total)`);
+      console.log(`  🔑 Keywords en texto completo: ${analysis.foundKeywords.length} total`);
     }
-    console.log(`  📊 Relevance Score: ${analysis.relevanceScore}/100 | Final Score: ${finalScore}/100`);
+    
+    console.log(`  📊 Final Score: ${finalScore}/100 ${finalScore >= 70 ? '🔥 MUY RELEVANTE' : finalScore >= 50 ? '⚠️ RELEVANTE' : finalScore >= 30 ? '📌 Posible' : ''}`);
     console.log(`✅ Procesado: ${url} -> ${slug}`);
     
     return metadata;

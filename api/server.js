@@ -10,6 +10,8 @@ const DATA_DIR = path.join(__dirname, '..', 'data');
 const STATUS_FILE = path.join(DATA_DIR, 'status', 'latest.json');
 const ALERTS_DIR = path.join(DATA_DIR, 'alerts');
 const DIFFS_DIR = path.join(DATA_DIR, 'diffs');
+const CHANGES_DIR = path.join(DATA_DIR, 'changes');
+const TEXT_DIR = path.join(DATA_DIR, 'snapshots', 'text');
 const HISTORY_FILE = path.join(DATA_DIR, 'history', 'url-history.jsonl');
 
 /**
@@ -257,32 +259,45 @@ app.get('/api/urls', async (req, res) => {
     
     // Convertir a array y construir respuesta
     const results = Array.from(urlMap.values()).map(event => {
-      // Determinar status
+      // Usar changedChars del evento si existe, si no calcularlo
+      const textLength = event.textLength || 0;
+      const changeRatio = event.changeRatio || 0;
+      const changedChars = event.changedChars !== undefined 
+        ? event.changedChars 
+        : Math.round(textLength * changeRatio);
+      const finalScore = event.finalScore || 0;
+      const keywordsInChanges = event.keywordsInChanges || [];
+      
+      // Determinar status basado en keywords en cambios (lo más importante)
       let status = 'error';
       if (event.status === 'success') {
-        // Si es primera ejecución, mostrar status especial
         if (event.isFirstRun) {
-          status = 'primera ejecución';
-        } else if (!event.hasChanged) {
+          // Primera ejecución: si hay keywords, es relevante
+          if (keywordsInChanges.length >= 2) {
+            status = 'primera ejecución - relevante';
+          } else if (keywordsInChanges.length === 1) {
+            status = 'primera ejecución - posible';
+          } else {
+            status = 'primera ejecución';
+          }
+        } else if (!event.hasChanged || changedChars === 0) {
           status = 'sin cambios';
         } else {
-          // Determinar si cambios son relevantes
-          const changeRatio = event.changeRatio || 0;
-          const finalScore = event.finalScore || 0;
-          const minScore = 20; // Umbral mínimo
-          
-          if (finalScore >= minScore || changeRatio >= 0.05) {
+          // LÓGICA BASADA EN KEYWORDS EN CAMBIOS
+          // 2+ keywords en cambios = relevante
+          // 1 keyword en cambios = posiblemente relevante
+          // 0 keywords pero cambió mucho = revisar
+          if (keywordsInChanges.length >= 2 || finalScore >= 70) {
             status = 'cambios relevantes';
+          } else if (keywordsInChanges.length === 1 || finalScore >= 50) {
+            status = 'cambios - posiblemente relevante';
+          } else if (changeRatio >= 0.05) {
+            status = 'cambios - revisar';
           } else {
             status = 'cambios irrelevantes';
           }
         }
       }
-      
-      // Calcular caracteres cambiados (aproximado)
-      const textLength = event.textLength || 0;
-      const changeRatio = event.changeRatio || 0;
-      const changedChars = Math.round(textLength * changeRatio);
       
       return {
         url: event.url,
@@ -290,9 +305,10 @@ app.get('/api/urls', async (req, res) => {
         textLength: textLength,
         changedChars: changedChars,
         changeRatio: changeRatio,
-        keywords: event.keywordsInChanges || event.foundKeywords || [],
+        keywords: keywordsInChanges,  // Solo keywords EN los cambios
+        keywordsTotal: event.foundKeywords?.length || 0,  // Keywords en texto completo
         lastScraped: event.timestamp,
-        finalScore: event.finalScore || 0
+        finalScore: finalScore
       };
     });
     
@@ -371,6 +387,100 @@ app.get('/api/changes', async (req, res) => {
     res.status(500).json({
       error: 'Internal server error',
       message: 'Failed to read diff file'
+    });
+  }
+});
+
+/**
+ * Get the full text content of the last scrape for a URL
+ * Query params: url (required) - the page URL
+ * Returns the content of data/snapshots/text/{slug}.txt
+ */
+app.get('/api/text', async (req, res) => {
+  try {
+    const { url: targetUrl } = req.query;
+
+    if (!targetUrl || typeof targetUrl !== 'string' || targetUrl.trim() === '') {
+      return res.status(400).json({
+        error: 'Missing parameter',
+        message: 'Query parameter "url" is required. Example: /api/text?url=https://example.com/page'
+      });
+    }
+
+    const slug = slugFromUrl(targetUrl.trim());
+    const textPath = path.join(TEXT_DIR, `${slug}.txt`);
+
+    const content = await fs.readFile(textPath, 'utf-8');
+
+    const accept = (req.headers.accept || '').toLowerCase();
+    if (accept.includes('text/plain')) {
+      res.type('text/plain').send(content);
+    } else {
+      res.json({
+        url: targetUrl.trim(),
+        slug,
+        textLength: content.length,
+        text: content
+      });
+    }
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return res.status(404).json({
+        error: 'Text not found',
+        message: 'No hay texto guardado para esta URL. La página aún no ha sido scrapeada.'
+      });
+    }
+    console.error('Error reading text:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'Failed to read text file'
+    });
+  }
+});
+
+/**
+ * Get the changed text (latest) for a URL
+ * Query params: url (required) - the page URL
+ * Returns the content of data/changes/{slug}_latest.txt
+ */
+app.get('/api/changed-text', async (req, res) => {
+  try {
+    const { url: targetUrl } = req.query;
+
+    if (!targetUrl || typeof targetUrl !== 'string' || targetUrl.trim() === '') {
+      return res.status(400).json({
+        error: 'Missing parameter',
+        message: 'Query parameter "url" is required. Example: /api/changed-text?url=https://example.com/page'
+      });
+    }
+
+    const slug = slugFromUrl(targetUrl.trim());
+    const changesPath = path.join(CHANGES_DIR, `${slug}_latest.txt`);
+
+    const content = await fs.readFile(changesPath, 'utf-8');
+
+    const accept = (req.headers.accept || '').toLowerCase();
+    if (accept.includes('text/plain')) {
+      res.type('text/plain').send(content);
+    } else {
+      res.json({
+        url: targetUrl.trim(),
+        slug,
+        textLength: content.length,
+        changedText: content
+      });
+    }
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return res.status(404).json({
+        error: 'Changed text not found',
+        message: 'No hay texto de cambios guardado para esta URL.'
+      });
+    }
+    console.error('Error reading changed text:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'Failed to read changed text file'
     });
   }
 });

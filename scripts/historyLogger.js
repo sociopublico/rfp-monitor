@@ -56,6 +56,7 @@ class HistoryLogger {
       ...(event.hasChanged !== undefined && { hasChanged: event.hasChanged }),
       ...(event.isFirstRun !== undefined && { isFirstRun: event.isFirstRun }),
       ...(event.changeRatio !== undefined && { changeRatio: event.changeRatio }),
+      ...(event.changedChars !== undefined && { changedChars: event.changedChars }),
       ...(event.keywordHits !== undefined && { keywordHits: event.keywordHits }),
       ...(event.foundKeywords && Array.isArray(event.foundKeywords) && { foundKeywords: event.foundKeywords }),
       ...(event.keywordsInChanges && Array.isArray(event.keywordsInChanges) && { keywordsInChanges: event.keywordsInChanges }),
