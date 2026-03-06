@@ -38,8 +38,8 @@ function calculateTextHash(text) {
 }
 
 /**
- * Calcula el ratio de cambio entre dos textos usando Levenshtein simplificado
- * Basado en CARACTERES, no palabras únicas, para detectar cambios reales
+ * Calcula el ratio de cambio entre dos textos (sensible a orden)
+ * usando prefijo/sufijo común sobre caracteres.
  * @param {string} oldText - Texto anterior
  * @param {string} newText - Texto nuevo
  * @returns {Object} - { ratio, changedChars, addedText, removedText }
@@ -65,20 +65,33 @@ function calculateChangeRatio(oldText, newText) {
     return { ratio: 0, changedChars: 0, addedText: '', removedText: '' };
   }
   
-  // Dividir en líneas para comparación más granular
-  const oldLines = oldNormalized.split(/[.!?;]\s+/).filter(l => l.trim().length > 0);
-  const newLines = newNormalized.split(/[.!?;]\s+/).filter(l => l.trim().length > 0);
+  // Longest common prefix
+  let prefixLen = 0;
+  const minLen = Math.min(oldNormalized.length, newNormalized.length);
+  while (prefixLen < minLen && oldNormalized[prefixLen] === newNormalized[prefixLen]) {
+    prefixLen++;
+  }
   
-  const oldSet = new Set(oldLines);
-  const newSet = new Set(newLines);
+  // Longest common suffix (sin superponer con el prefijo)
+  let suffixLen = 0;
+  const oldRemaining = oldNormalized.length - prefixLen;
+  const newRemaining = newNormalized.length - prefixLen;
+  const maxSuffix = Math.min(oldRemaining, newRemaining);
   
-  // Líneas añadidas (están en new pero no en old)
-  const addedLines = newLines.filter(l => !oldSet.has(l));
-  // Líneas eliminadas (están en old pero no en new)
-  const removedLines = oldLines.filter(l => !newSet.has(l));
+  while (
+    suffixLen < maxSuffix &&
+    oldNormalized[oldNormalized.length - 1 - suffixLen] === newNormalized[newNormalized.length - 1 - suffixLen]
+  ) {
+    suffixLen++;
+  }
   
-  const addedText = addedLines.join('. ');
-  const removedText = removedLines.join('. ');
+  const oldChangedStart = prefixLen;
+  const oldChangedEnd = oldNormalized.length - suffixLen;
+  const newChangedStart = prefixLen;
+  const newChangedEnd = newNormalized.length - suffixLen;
+  
+  const removedText = oldNormalized.slice(oldChangedStart, oldChangedEnd);
+  const addedText = newNormalized.slice(newChangedStart, newChangedEnd);
   
   // Calcular caracteres cambiados
   const addedChars = addedText.length;
@@ -86,7 +99,7 @@ function calculateChangeRatio(oldText, newText) {
   const changedChars = addedChars + removedChars;
   
   // Ratio basado en caracteres cambiados vs total
-  const totalChars = Math.max(oldNormalized.length, newNormalized.length);
+  const totalChars = Math.max(oldNormalized.length, newNormalized.length, 1);
   const ratio = totalChars > 0 ? Math.min(1, changedChars / totalChars) : 0;
   
   return { ratio, changedChars, addedText, removedText };

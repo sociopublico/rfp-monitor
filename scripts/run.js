@@ -49,17 +49,17 @@ async function processUrl(page, url, existingMetadata) {
     // Extraer texto visible
     const text = extractVisibleText(html);
     
-    // Guardar HTML
+    // === DETECCIÓN DE CAMBIOS ===
+    // IMPORTANTE: detectar ANTES de sobrescribir snapshots
+    const changeInfo = await detectChange(url, slug, text);
+    
+    // Guardar HTML (snapshot actual)
     const htmlPath = path.join(HTML_DIR, `${slug}.html`);
     await fs.writeFile(htmlPath, html, 'utf-8');
     
-    // Guardar texto
+    // Guardar texto (snapshot actual)
     const textPath = path.join(TEXT_DIR, `${slug}.txt`);
     await fs.writeFile(textPath, text, 'utf-8');
-    
-    // === DETECCIÓN DE CAMBIOS ===
-    // Ahora detectChange busca keywords SOLO en el texto cambiado
-    const changeInfo = await detectChange(url, slug, text);
     
     // === ANÁLISIS SEMÁNTICO del texto completo ===
     // (para referencia, pero las keywords que importan son las de cambios)
@@ -247,7 +247,7 @@ async function main() {
         // Pausa entre requests para no sobrecargar el servidor
         if (i < filteredRows.length - 1) {
           console.log('⏳ Esperando 10 segundos antes del siguiente sitio...');
-          await new Promise(resolve => setTimeout(resolve, 5000));
+          await new Promise(resolve => setTimeout(resolve, 10000));
         }
       }
       
