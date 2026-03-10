@@ -9,7 +9,13 @@ function classifyNavigationError(error) {
   if (message.includes('err_name_not_resolved') || message.includes('enotfound')) return 'dns';
   if (message.includes('err_connection') || message.includes('econnreset') || message.includes('econnrefused')) return 'connection';
   if (message.includes('target closed') || message.includes('session closed')) return 'browser';
+  if (message.includes('detached frame')) return 'frame_detached';
   return 'unknown';
+}
+
+function isDetachedFrameError(error) {
+  const message = (error && error.message ? error.message : '').toLowerCase();
+  return message.includes('detached frame');
 }
 
 async function gotoWithRetries(page, url) {
@@ -49,9 +55,31 @@ async function fetchSiteHtml(page, url) {
     await gotoWithRetries(page, url);
 
     // Obtener el HTML completo después de que JavaScript haya ejecutado
-    const html = await page.content();
-    
-    return html;
+    // Algunos sitios con muchos redirects/iframes disparan "detached Frame"
+    try {
+      return await page.content();
+    } catch (error) {
+      if (!isDetachedFrameError(error)) {
+        throw error;
+      }
+
+      console.warn(`⚠️  Detached frame en ${url}. Reintentando captura de HTML...`);
+
+      // Reintento 1: esperar estabilización y usar evaluate del documento
+      await page.waitForTimeout(1200);
+      try {
+        const htmlViaEval = await page.evaluate(() => document.documentElement.outerHTML);
+        if (htmlViaEval && htmlViaEval.length > 0) {
+          return htmlViaEval;
+        }
+      } catch (retryError) {
+        console.warn(`⚠️  Reintento evaluate falló: ${retryError.message}`);
+      }
+
+      // Reintento 2: navegar nuevamente con estrategia más liviana
+      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: TIMEOUT });
+      return await page.content();
+    }
   } catch (error) {
     throw new Error(`Error al obtener HTML de ${url}: ${error.message}`);
   }
@@ -107,6 +135,9 @@ async function createBrowser() {
     '--disable-background-networking',
     '--disable-default-apps',
     '--disable-sync',
+    '--ignore-certificate-errors',
+    '--ignore-ssl-errors',
+    '--allow-running-insecure-content',
     '--metrics-recording-only',
     '--mute-audio'
   ];
