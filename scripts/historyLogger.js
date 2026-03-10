@@ -50,6 +50,7 @@ class HistoryLogger {
       timestamp: event.timestamp,
       status: event.status,
       ...(event.httpStatus !== undefined && { httpStatus: event.httpStatus }),
+      ...(event.errorType && { errorType: event.errorType }),
       ...(event.errorMessage && { errorMessage: event.errorMessage }),
       ...(event.textHash && { textHash: event.textHash }),
       ...(event.textLength !== undefined && { textLength: event.textLength }),

@@ -2,6 +2,40 @@ const puppeteer = require('puppeteer');
 
 const TIMEOUT = 60000; // 60 segundos
 
+function classifyNavigationError(error) {
+  const message = (error && error.message ? error.message : '').toLowerCase();
+  if (message.includes('timeout')) return 'timeout';
+  if (message.includes('err_cert')) return 'ssl';
+  if (message.includes('err_name_not_resolved') || message.includes('enotfound')) return 'dns';
+  if (message.includes('err_connection') || message.includes('econnreset') || message.includes('econnrefused')) return 'connection';
+  if (message.includes('target closed') || message.includes('session closed')) return 'browser';
+  return 'unknown';
+}
+
+async function gotoWithRetries(page, url) {
+  const attempts = [
+    { waitUntil: 'networkidle2', timeout: TIMEOUT },
+    { waitUntil: 'domcontentloaded', timeout: TIMEOUT },
+    { waitUntil: 'load', timeout: 45000 }
+  ];
+  let lastError = null;
+
+  for (let i = 0; i < attempts.length; i++) {
+    const attempt = attempts[i];
+    try {
+      await page.goto('about:blank', { waitUntil: 'domcontentloaded', timeout: 10000 }).catch(() => {});
+      await page.goto(url, attempt);
+      return;
+    } catch (error) {
+      lastError = error;
+      console.warn(`⚠️  Navegación fallida [${i + 1}/${attempts.length}] (${attempt.waitUntil}): ${error.message}`);
+    }
+  }
+
+  const errorType = classifyNavigationError(lastError);
+  throw new Error(`[${errorType}] ${lastError ? lastError.message : 'unknown navigation error'}`);
+}
+
 /**
  * Obtiene el HTML renderizado de una URL usando Puppeteer
  * Espera a que la página esté completamente cargada (networkidle2)
@@ -11,11 +45,8 @@ const TIMEOUT = 60000; // 60 segundos
  */
 async function fetchSiteHtml(page, url) {
   try {
-    // Navegar a la URL con timeout
-    await page.goto(url, {
-      waitUntil: 'networkidle2',
-      timeout: TIMEOUT
-    });
+    // Navegar con reintentos y estrategias de espera
+    await gotoWithRetries(page, url);
 
     // Obtener el HTML completo después de que JavaScript haya ejecutado
     const html = await page.content();
@@ -135,6 +166,17 @@ async function createBrowser() {
   
   // Configurar user agent para evitar bloqueos
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+
+  // Reducir carga de recursos no esenciales para bajar timeouts
+  await page.setRequestInterception(true);
+  page.on('request', (request) => {
+    const resourceType = request.resourceType();
+    if (resourceType === 'image' || resourceType === 'font' || resourceType === 'media') {
+      request.abort();
+      return;
+    }
+    request.continue();
+  });
   
   return { browser, page };
 }

@@ -22,6 +22,29 @@ const { generateAlert } = require('./alertManager');
 const { updateStatus } = require('./updateStatus');
 const config = require('../config/profile');
 
+function extractErrorType(errorMessage) {
+  if (!errorMessage) {
+    return 'unknown';
+  }
+  const message = errorMessage.toLowerCase();
+  if (message.includes('[timeout]') || message.includes('timeout')) {
+    return 'timeout';
+  }
+  if (message.includes('[ssl]') || message.includes('err_cert')) {
+    return 'ssl';
+  }
+  if (message.includes('[dns]') || message.includes('err_name_not_resolved') || message.includes('enotfound')) {
+    return 'dns';
+  }
+  if (message.includes('[connection]') || message.includes('econnreset') || message.includes('econnrefused')) {
+    return 'connection';
+  }
+  if (message.includes('[browser]') || message.includes('target closed')) {
+    return 'browser';
+  }
+  return 'unknown';
+}
+
 // Rutas de directorios y archivos
 const SNAPSHOTS_DIR = path.join(__dirname, '..', 'data', 'snapshots');
 const HTML_DIR = path.join(SNAPSHOTS_DIR, 'html');
@@ -180,6 +203,7 @@ async function processUrl(page, url, existingMetadata) {
         url: url,
         timestamp: timestamp,
         status: 'error',
+        errorType: extractErrorType(error.message),
         errorMessage: error.message
       });
     } catch (logError) {

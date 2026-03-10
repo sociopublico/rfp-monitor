@@ -237,28 +237,50 @@ app.get('/api/urls', async (req, res) => {
       }
     }).filter(e => e !== null);
     
-    // Agrupar por URL y obtener el último evento de cada una
+    // Agrupar por URL y guardar último evento + último éxito + último error
     const urlMap = new Map();
     
     for (const event of events) {
       if (filterUrl && event.url !== filterUrl) {
         continue;
       }
-      
+
       if (!urlMap.has(event.url)) {
-        urlMap.set(event.url, event);
-      } else {
-        const existing = urlMap.get(event.url);
-        const existingDate = new Date(existing.timestamp || 0);
-        const eventDate = new Date(event.timestamp || 0);
-        if (eventDate > existingDate) {
-          urlMap.set(event.url, event);
+        urlMap.set(event.url, {
+          latest: event,
+          lastSuccess: event.status === 'success' ? event : null,
+          lastError: event.status === 'error' ? event : null
+        });
+        continue;
+      }
+
+      const bucket = urlMap.get(event.url);
+      const latestDate = new Date(bucket.latest?.timestamp || 0);
+      const eventDate = new Date(event.timestamp || 0);
+      if (eventDate > latestDate) {
+        bucket.latest = event;
+      }
+      if (event.status === 'success') {
+        const successDate = new Date(bucket.lastSuccess?.timestamp || 0);
+        if (eventDate > successDate) {
+          bucket.lastSuccess = event;
         }
       }
+      if (event.status === 'error') {
+        const errorDate = new Date(bucket.lastError?.timestamp || 0);
+        if (eventDate > errorDate) {
+          bucket.lastError = event;
+        }
+      }
+      urlMap.set(event.url, bucket);
     }
     
     // Convertir a array y construir respuesta
-    const results = Array.from(urlMap.values()).map(event => {
+    const results = Array.from(urlMap.entries()).map(([url, bucket]) => {
+      const event = bucket.latest;
+      const lastSuccess = bucket.lastSuccess;
+      const lastError = bucket.lastError;
+
       // Usar changedChars del evento si existe, si no calcularlo
       const textLength = event.textLength || 0;
       const changeRatio = event.changeRatio || 0;
@@ -300,7 +322,7 @@ app.get('/api/urls', async (req, res) => {
       }
       
       return {
-        url: event.url,
+        url,
         status: status,
         textLength: textLength,
         changedChars: changedChars,
@@ -308,7 +330,12 @@ app.get('/api/urls', async (req, res) => {
         keywords: keywordsInChanges,  // Solo keywords EN los cambios
         keywordsTotal: event.foundKeywords?.length || 0,  // Keywords en texto completo
         lastScraped: event.timestamp,
-        finalScore: finalScore
+        finalScore: finalScore,
+        lastErrorAt: lastError?.timestamp || null,
+        errorType: event.status === 'error' ? (event.errorType || 'unknown') : null,
+        errorMessage: event.status === 'error' ? (event.errorMessage || 'Unknown error') : null,
+        lastSuccessAt: lastSuccess?.timestamp || null,
+        lastSuccessTextLength: lastSuccess?.textLength || null
       };
     });
     
@@ -481,6 +508,57 @@ app.get('/api/changed-text', async (req, res) => {
     res.status(500).json({
       error: 'Internal server error',
       message: 'Failed to read changed text file'
+    });
+  }
+});
+
+/**
+ * Get recent scraping errors (for debugging)
+ * Query params:
+ *  - limit (optional, default 50)
+ *  - url (optional exact match)
+ */
+app.get('/api/errors', async (req, res) => {
+  try {
+    const { limit, url } = req.query;
+    const max = Number.parseInt(limit, 10);
+    const limitValue = Number.isFinite(max) && max > 0 ? max : 50;
+
+    const content = await fs.readFile(HISTORY_FILE, 'utf-8');
+    const lines = content.split('\n').filter(line => line.trim());
+    const events = lines
+      .map((line) => {
+        try {
+          return JSON.parse(line);
+        } catch {
+          return null;
+        }
+      })
+      .filter((e) => e && e.status === 'error');
+
+    const filtered = url ? events.filter((e) => e.url === url) : events;
+    filtered.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+
+    const errors = filtered.slice(0, limitValue).map((e) => ({
+      url: e.url,
+      timestamp: e.timestamp,
+      errorType: e.errorType || 'unknown',
+      errorMessage: e.errorMessage || 'Unknown error'
+    }));
+
+    res.json({
+      total: filtered.length,
+      returned: errors.length,
+      errors
+    });
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return res.json({ total: 0, returned: 0, errors: [] });
+    }
+    console.error('Error reading recent errors:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'Failed to read errors from history'
     });
   }
 });
