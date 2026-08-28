@@ -1,0 +1,180 @@
+# RFP Monitor
+
+Sistema de monitoreo de sitios web para detectar **RFPs**, convocatorias y licitaciones relevantes para [sociopúblico](https://github.com/sociopublico).
+
+Lee una lista de URLs desde Google Sheets, scrapea cada página con Chromium, compara el texto contra la corrida anterior y genera alertas cuando el cambio parece una oportunidad (keywords de RFP + temas de interés).
+
+En producción la API vive en `https://rfp.sociopublico.com` detrás de Traefik.
+
+## Qué hace
+
+1. Descarga el CSV publicado del spreadsheet (filas con `Tiene sitio RFPs` = `SI` o `OTRO`).
+2. Abre cada URL con Puppeteer, espera a que corra el JS y extrae el texto visible.
+3. Compara contra el snapshot anterior (hash SHA-256 + diff de caracteres).
+4. Busca keywords **en el texto que cambió**, no en toda la página.
+5. Calcula un score y, si supera el umbral, escribe una alerta en disco.
+6. Expone esos resultados por una API REST de solo lectura.
+
+El spreadsheet también se actualiza al abrirse: un Google Apps Script pega status y keywords desde `GET /api/urls`.
+
+## Requisitos
+
+- Node.js 20+
+- Chromium / Chrome (Puppeteer lo baja solo en local; en Docker se usa el de Alpine)
+- Acceso de red a Google Sheets (CSV público) y a los sitios a monitorear
+
+## Arranque local
+
+```bash
+npm ci
+npm start          # API en http://localhost:3000
+npm run scrape     # una corrida del scraper
+```
+
+La primera corrida no genera diffs: marca cada URL como primera ejecución y guarda el texto base. Recién la segunda (y siguientes) detectan cambios.
+
+Entre sitio y sitio hay una pausa de 10 segundos para no martillar servidores.
+
+### Verificar que levantó
+
+```bash
+curl http://localhost:3000/health
+# {"status":"ok"}
+
+curl http://localhost:3000/api/status
+curl http://localhost:3000/api/urls
+```
+
+Hasta que no corras el scraper, `/api/status` responde 404 y `/api/urls` un listado vacío. Eso es esperado.
+
+## Docker
+
+La imagen de producción es `registry.sociopublico.com/rfp-monitor`. El contenedor **solo levanta la API**. El scraper se corre aparte (cron, job, o `docker exec`).
+
+```bash
+docker compose up -d
+```
+
+Notas:
+
+- El volumen `./data` es persistente: snapshots, histórico, diffs y alertas viven ahí.
+- `shm_size: 2gb` es necesario para Chromium.
+- Traefik espera la red externa `traefik-public` y el host `rfp.sociopublico.com`.
+- En la imagen, `PUPPETEER_EXECUTABLE_PATH` apunta a `/usr/bin/chromium-browser`.
+
+Para scrapear dentro del contenedor:
+
+```bash
+docker exec rfp-monitor node scripts/run.js
+```
+
+## Configuración
+
+Todo el perfil de análisis está en [`config/profile.js`](config/profile.js):
+
+| Clave | Qué controla | Default actual |
+| --- | --- | --- |
+| `interestKeywords` | Temas de sociopúblico (governance, cities, climate, etc.) | lista local |
+| `rfpKeywords` | Señales de convocatoria (`rfp`, `licitación`, `deadline`, …) | lista local |
+| `analysisThresholds.minTextChangeRatio` | Cambio mínimo para considerarlo significativo | `0.03` |
+| `analysisThresholds.minKeywordHits` | Hits de keywords RFP para marcar oportunidad | `2` |
+| `analysisThresholds.minFinalScore` | Score mínimo para escribir una alerta | `20` |
+| `settings.detectFutureDates` | Bonus si hay fechas futuras (deadlines) | `true` |
+
+Las keywords que realmente se buscan en los cambios salen del spreadsheet (hoja de `word`), con cache de 1 hora. Si esa descarga falla, se usa el fallback de `config/profile.js`.
+
+## API
+
+Base: `http://localhost:3000` o `https://rfp.sociopublico.com`.
+
+| Método | Ruta | Qué devuelve |
+| --- | --- | --- |
+| `GET` | `/health` | `{ "status": "ok" }` |
+| `GET` | `/api/status` | Resumen de la última corrida |
+| `GET` | `/api/urls` | Status + keywords por URL (lo que consume el Sheet) |
+| `GET` | `/api/urls?url=` | Lo mismo, una sola URL |
+| `GET` | `/api/alerts` | Alertas, más reciente primero |
+| `GET` | `/api/alerts/latest` | Última alerta (`204` si no hay) |
+| `GET` | `/api/history?url=&limit=` | Eventos del JSONL |
+| `GET` | `/api/errors?url=&limit=` | Errores recientes (timeout, SSL, DNS, …) |
+| `GET` | `/api/changes?url=` | Diff de la última detección |
+| `GET` | `/api/text?url=` | Texto visible del último scrape |
+| `GET` | `/api/changed-text?url=` | Solo el texto añadido |
+
+`/api/changes`, `/api/text` y `/api/changed-text` aceptan `Accept: text/plain` para devolver el archivo crudo.
+
+### Status que ve el spreadsheet
+
+Valores de `status` en `/api/urls`:
+
+- `primera ejecución` / `primera ejecución - posible` / `primera ejecución - relevante`
+- `sin cambios`
+- `cambios relevantes` — 2+ keywords en el diff, o score ≥ 70
+- `cambios - posiblemente relevante` — 1 keyword, o score ≥ 50
+- `cambios - revisar` — cambió ≥ 5% sin keywords claras
+- `cambios irrelevantes`
+- `error`
+
+## Datos en disco
+
+`data/` está en `.gitignore`. Se crea sola en la primera corrida.
+
+```
+data/
+  snapshots/html/{slug}.html      HTML renderizado
+  snapshots/text/{slug}.txt       texto visible
+  snapshots/metadata.json         metadatos por URL
+  history/url-history.jsonl       un evento por línea (append-only)
+  diffs/{slug}.diff.txt           último diff
+  changes/{slug}_latest.txt       texto añadido (y copias timestamped)
+  alerts/{timestamp}-{slug}.json  alertas
+  status/latest.json              resumen de la última corrida
+```
+
+El slug se arma con hostname + path (`utils.generateSlug`).
+
+## Google Sheets y Apps Script
+
+Hay dos pestañas publicadas como CSV:
+
+- **URLs** (`gid=0`): columnas `Tiene sitio RFPs` y `Link`.
+- **Keywords** (`gid=1294632680`): columna `word`.
+
+Para devolver status al sheet:
+
+1. Abrí el spreadsheet → Extensiones → Apps Script.
+2. Pegá [`google-apps-script.gs`](google-apps-script.gs).
+3. Al abrir la hoja corre `onOpen()` y pega `Status` y `Keywords` según `GET /api/urls`.
+4. `manualUpdate()` sirve para probar sin reabrir.
+
+## Cómo se decide si algo importa
+
+El score final **prioriza keywords en el texto añadido**, no el tamaño del cambio:
+
+- 2+ keywords en cambios → mínimo 70
+- 1 keyword en cambios → mínimo 50
+- primera corrida con relevancia > 30 → 80% del relevance score
+- cambio sin keywords → promedio de change score y relevance
+- sin cambio → 30% del relevance (tope bajo)
+
+El umbral de alerta es `minFinalScore` (hoy 20). El análisis semántico todavía es heurístico (keywords + fechas); el código está preparado para un LLM, pero no está conectado.
+
+## Dónde mirar cuando algo falla
+
+| Síntoma | Dónde |
+| --- | --- |
+| La API está viva pero no hay datos | No corrió el scraper, o `data/` no está montada |
+| Una URL siempre da error | `GET /api/errors?url=…` — tipos: `timeout`, `ssl`, `dns`, `connection`, `browser`, `frame_detached` |
+| “Hay cambio pero no es RFP” | `data/diffs/` y `data/changes/` |
+| Keywords de más / de menos | spreadsheet de `word`, o fallback en `config/profile.js` |
+| Chromium no arranca en Docker | `shm_size`, `PUPPETEER_EXECUTABLE_PATH`, logs de `createBrowser()` |
+
+Más detalle de arquitectura, scoring y mapa de archivos: [`CONTEXTO_TECNICO.md`](CONTEXTO_TECNICO.md).
+
+## Qué no está hecho
+
+- Integración real con un LLM en `analyzeContent.js`
+- Notificaciones (mail, Slack, webhook) cuando sale una alerta
+- Dashboard; hoy la UI es el spreadsheet + la API
+- Tests automatizados
+- Scheduler dentro del repo: hay que disparar `npm run scrape` desde afuera
