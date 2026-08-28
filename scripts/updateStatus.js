@@ -21,6 +21,7 @@ async function updateStatus(statusData) {
     errorCount: statusData.errorCount || 0,
     changedCount: statusData.changedCount || 0,
     alertsCount: statusData.alertsCount || 0,
+    firstRunCount: statusData.firstRunCount || 0,
     status: 'ok'
   };
   

@@ -1,7 +1,8 @@
 const path = require('path');
 const fs = require('fs').promises;
 const { readAndFilterCsv } = require('./readCsv');
-const { fetchSiteHtml, createBrowser, closeBrowser } = require('./fetchSite');
+const { fetchSiteHtml, createBrowser, createPage, closeBrowser, shouldRecreatePage } = require('./fetchSite');
+const { startRunLog } = require('./runLog');
 const {
   generateSlug,
   extractVisibleText,
@@ -162,6 +163,7 @@ async function processUrl(page, url, existingMetadata) {
       tamañoTexto: Buffer.byteLength(text, 'utf-8'),
       // Campos adicionales del nuevo sistema
       hasChanged: changeInfo.hasChanged,
+      isFirstRun: changeInfo.isFirstRun || false,
       changeRatio: changeInfo.changeRatio,
       changedChars: changeInfo.changedChars || 0,
       relevanceScore: analysis.relevanceScore,
@@ -227,6 +229,7 @@ async function processUrl(page, url, existingMetadata) {
  * Función principal que orquesta todo el proceso
  */
 async function main() {
+  const runLog = startRunLog();
   console.log(`🚀 Iniciando proceso de scraping... ${new Date().toISOString()}\n`);
   
   try {
@@ -238,6 +241,8 @@ async function main() {
     await ensureDirectoryExists(path.join(__dirname, '..', 'data', 'diffs'));
     await ensureDirectoryExists(path.join(__dirname, '..', 'data', 'alerts'));
     await ensureDirectoryExists(path.join(__dirname, '..', 'data', 'history'));
+    await ensureDirectoryExists(path.join(__dirname, '..', 'data', 'runs'));
+    await ensureDirectoryExists(path.join(__dirname, '..', 'data', 'logs'));
     
     // 2. Leer y filtrar CSV
     console.log('📊 Leyendo y filtrando CSV...');
@@ -246,6 +251,7 @@ async function main() {
     
     if (filteredRows.length === 0) {
       console.log('⚠️  No se encontraron URLs para procesar.');
+      await runLog.finish({ totalUrls: 0, status: 'empty' });
       return;
     }
     
@@ -255,7 +261,8 @@ async function main() {
     
     // 4. Crear browser y page (reutilizar para todas las URLs)
     console.log('🌐 Iniciando navegador...');
-    const { browser, page } = await createBrowser();
+    const { browser, page: initialPage } = await createBrowser();
+    let page = initialPage;
     
     try {
       // 5. Procesar cada URL
@@ -267,6 +274,21 @@ async function main() {
         
         const metadata = await processUrl(page, row.link, existingMetadata);
         newMetadata.push(metadata);
+
+        if (metadata.error && shouldRecreatePage(metadata.error)) {
+          console.warn('⚠️  Chromium quedó en un frame inválido. Recreando la página para no contaminar el resto de la corrida...');
+          try {
+            await page.close();
+          } catch (closeError) {
+            console.warn(`⚠️  No se pudo cerrar la page anterior: ${closeError.message}`);
+          }
+          try {
+            page = await createPage(browser);
+            console.log('✅ Página de Chromium recreada');
+          } catch (recreateError) {
+            console.error(`❌ No se pudo recrear la page: ${recreateError.message}`);
+          }
+        }
         
         // Pausa entre requests para no sobrecargar el servidor
         if (i < filteredRows.length - 1) {
@@ -296,20 +318,42 @@ async function main() {
       const errorCount = newMetadata.filter(m => m.error).length;
       const changedCount = newMetadata.filter(m => m.hasChanged).length;
       const alertsCount = newMetadata.filter(m => m.alertGenerated).length;
+      const firstRunCount = newMetadata.filter(m => m.isFirstRun).length;
       
       // 9. Actualizar archivo de status
+      const statusPayload = {
+        lastRun: new Date().toISOString(),
+        totalUrls: newMetadata.length,
+        successCount: successCount,
+        errorCount: errorCount,
+        changedCount: changedCount,
+        alertsCount: alertsCount,
+        firstRunCount: firstRunCount
+      };
       try {
-        await updateStatus({
-          lastRun: new Date().toISOString(),
-          totalUrls: newMetadata.length,
-          successCount: successCount,
-          errorCount: errorCount,
-          changedCount: changedCount,
-          alertsCount: alertsCount
-        });
+        await updateStatus(statusPayload);
         console.log('📊 Status actualizado');
       } catch (statusError) {
         console.error('⚠️  Error al actualizar status:', statusError.message);
+      }
+
+      try {
+        await runLog.finish({
+          ...statusPayload,
+          urls: newMetadata.map((m) => ({
+            url: m.url,
+            slug: m.slug,
+            error: m.error || null,
+            hasChanged: Boolean(m.hasChanged),
+            isFirstRun: Boolean(m.isFirstRun),
+            changedChars: m.changedChars || 0,
+            finalScore: m.finalScore || 0,
+            alertGenerated: Boolean(m.alertGenerated),
+            keywordsInChanges: m.keywordsInChanges || []
+          }))
+        });
+      } catch (runLogError) {
+        console.error('⚠️  Error al guardar log de corrida:', runLogError.message);
       }
       
       // 10. Resumen final
@@ -320,6 +364,7 @@ async function main() {
       console.log(`✅ Exitosas: ${successCount}`);
       console.log(`❌ Errores: ${errorCount}`);
       console.log(`🔄 Con cambios: ${changedCount}`);
+      console.log(`🆕 Primera ejecución (reales): ${firstRunCount}`);
       console.log(`🚨 Alertas generadas: ${alertsCount}`);
       console.log(`📁 Total en metadata: ${allMetadata.length}`);
       console.log('='.repeat(60));
@@ -333,6 +378,11 @@ async function main() {
   } catch (error) {
     console.error('\n❌ Error fatal:', error.message);
     console.error(error.stack);
+    try {
+      await runLog.finish({ status: 'fatal', error: error.message });
+    } catch {
+      // ignore
+    }
     process.exit(1);
   }
 }

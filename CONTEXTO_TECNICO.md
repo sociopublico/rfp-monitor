@@ -90,7 +90,7 @@ No hay tests. No hay scheduler. No hay `.env`: las URLs del Sheet están en el c
 
 `calculateChangeScore` es generoso (cualquier cambio > 0 ya da 30). `calculateKeywordScore`: 1→40, 2→70, 3+→100.
 
-Labels que arma `/api/urls` (eso es lo que ve el equipo en el Sheet):
+Labels que arma `/api/urls` (eso es lo que ve el equipo en el Sheet). `primera ejecución` solo si **no hay un scrape exitoso anterior** (un error reciente no cuenta):
 
 | Condición | `status` |
 | --- | --- |
@@ -112,8 +112,9 @@ Si tocás scoring, actualizá esta tabla y el README. El Sheet no tiene lógica 
 - **Columnas del CSV de URLs**: `Tiene sitio RFPs`, `Link`.
 - **Columna del CSV de keywords**: `word`.
 - **Slug** — `generateSlug` en `utils.js` y `slugFromUrl` en `api/server.js` tienen que seguir la misma regla, si no `/api/changes` y `/api/text` no encuentran archivos.
-- **Histórico append-only** — nunca reescribir `url-history.jsonl`. `detectChange` mira el último evento de esa URL.
+- **Histórico append-only** — nunca reescribir `url-history.jsonl`. `detectChange` usa el último evento **con textHash** (`getLastBaselineEventForUrl`), no el último evento a secas.
 - **Detectar cambios antes de escribir snapshots** — si invertís el orden, el “texto anterior” es el actual y el ratio queda en 0.
+- Un `frame_detached` tiene que recrear la page de Puppeteer; si no, las URLs que siguen en la corrida fallan todas.
 
 ## Cómo trabajar
 

@@ -15,7 +15,9 @@ En producción la API vive en `https://rfp.sociopublico.com` detrás de Traefik.
 5. Calcula un score y, si supera el umbral, escribe una alerta en disco.
 6. Expone esos resultados por una API REST de solo lectura.
 
-El spreadsheet también se actualiza al abrirse: un Google Apps Script pega status y keywords desde `GET /api/urls`.
+El spreadsheet se actualiza a mano (o con un activador): menú **RFP Monitor → Actualizar status y keywords**. El script pega esos campos desde `GET /api/urls` en la hoja `Sitios RFPs`.
+
+En `https://rfp.sociopublico.com` hay una página de inicio que explica el flujo y muestra la última corrida.
 
 ## Requisitos
 
@@ -38,11 +40,13 @@ Entre sitio y sitio hay una pausa de 10 segundos para no martillar servidores.
 ### Verificar que levantó
 
 ```bash
+curl http://localhost:3000/
 curl http://localhost:3000/health
 # {"status":"ok"}
 
 curl http://localhost:3000/api/status
 curl http://localhost:3000/api/urls
+curl http://localhost:3000/api/runs
 ```
 
 Hasta que no corras el scraper, `/api/status` responde 404 y `/api/urls` un listado vacío. Eso es esperado.
@@ -89,6 +93,7 @@ Base: `http://localhost:3000` o `https://rfp.sociopublico.com`.
 
 | Método | Ruta | Qué devuelve |
 | --- | --- | --- |
+| `GET` | `/` | Página de inicio (cómo usar el monitor) |
 | `GET` | `/health` | `{ "status": "ok" }` |
 | `GET` | `/api/status` | Resumen de la última corrida |
 | `GET` | `/api/urls` | Status + keywords por URL (lo que consume el Sheet) |
@@ -97,6 +102,8 @@ Base: `http://localhost:3000` o `https://rfp.sociopublico.com`.
 | `GET` | `/api/alerts/latest` | Última alerta (`204` si no hay) |
 | `GET` | `/api/history?url=&limit=` | Eventos del JSONL |
 | `GET` | `/api/errors?url=&limit=` | Errores recientes (timeout, SSL, DNS, …) |
+| `GET` | `/api/runs` | Historial de corridas |
+| `GET` | `/api/runs/latest` | Detalle de la última corrida (con cada URL) |
 | `GET` | `/api/changes?url=` | Diff de la última detección |
 | `GET` | `/api/text?url=` | Texto visible del último scrape |
 | `GET` | `/api/changed-text?url=` | Solo el texto añadido |
@@ -125,6 +132,9 @@ data/
   snapshots/text/{slug}.txt       texto visible
   snapshots/metadata.json         metadatos por URL
   history/url-history.jsonl       un evento por línea (append-only)
+  logs/{runId}.log                stdout de cada corrida
+  runs/index.jsonl                índice de corridas
+  runs/{runId}.json               resumen + URLs de esa corrida
   diffs/{slug}.diff.txt           último diff
   changes/{slug}_latest.txt       texto añadido (y copias timestamped)
   alerts/{timestamp}-{slug}.json  alertas
@@ -140,12 +150,22 @@ Hay dos pestañas publicadas como CSV:
 - **URLs** (`gid=0`): columnas `Tiene sitio RFPs` y `Link`.
 - **Keywords** (`gid=1294632680`): columna `word`.
 
-Para devolver status al sheet:
+La hoja de trabajo es **Sitios RFPs**. Columnas que usa el sistema: `Tiene sitio RFPs`, `Link`, `status`, `keywords`. El resto (`Comentarios Loli`, etc.) es de las personas.
 
-1. Abrí el spreadsheet → Extensiones → Apps Script.
-2. Pegá [`google-apps-script.gs`](google-apps-script.gs).
-3. Al abrir la hoja corre `onOpen()` y pega `Status` y `Keywords` según `GET /api/urls`.
-4. `manualUpdate()` sirve para probar sin reabrir.
+Para instalar/actualizar el script:
+
+1. Spreadsheet → Extensiones → Apps Script.
+2. Pegá [`google-apps-script.gs`](google-apps-script.gs) y autorizá una vez.
+3. En la hoja aparece el menú **RFP Monitor → Actualizar status y keywords**.
+4. Un `onOpen` simple de Google **no puede** llamar a la API. Si querés que se actualice al abrir, creá un activador instalable sobre `updateStatusAndKeywords`.
+
+El script siempre escribe en `Sitios RFPs`, aunque estés parado en Keywords o en Propuestas (esas pestañas también tienen columna Link).
+
+## Primera ejecución “falsa”
+
+Si Chromium se cae al final de una corrida, las últimas URLs quedan como `error` (típico: `frame_detached`). Antes, la corrida siguiente las marcaba como **primera ejecución** porque el último evento no tenía `textHash`. Eso le pasó a Loli con ~29 sitios que ya se monitoreaban.
+
+Ahora el baseline es el último scrape **exitoso**, y un frame roto recrea la page de Chromium para no contagiar el resto de la corrida. La API tampoco muestra “primera ejecución” si esa URL ya tuvo un éxito anterior.
 
 ## Cómo se decide si algo importa
 

@@ -190,15 +190,19 @@ async function createBrowser() {
     }
   }
   
+  const page = await createPage(browser);
+  return { browser, page };
+}
+
+/**
+ * Crea una Page nueva (user agent, timeouts, bloqueo de recursos).
+ * Sirve para recuperar la corrida cuando un sitio deja el frame detached.
+ */
+async function createPage(browser) {
   const page = await browser.newPage();
-  
-  // Configurar timeout por defecto
   page.setDefaultTimeout(TIMEOUT);
-  
-  // Configurar user agent para evitar bloqueos
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
-  // Reducir carga de recursos no esenciales para bajar timeouts
   await page.setRequestInterception(true);
   page.on('request', (request) => {
     const resourceType = request.resourceType();
@@ -208,8 +212,20 @@ async function createBrowser() {
     }
     request.continue();
   });
-  
-  return { browser, page };
+
+  return page;
+}
+
+function shouldRecreatePage(errorMessage) {
+  const message = (errorMessage || '').toLowerCase();
+  return (
+    message.includes('detached frame') ||
+    message.includes('frame_detached') ||
+    message.includes('target closed') ||
+    message.includes('session closed') ||
+    message.includes('execution context was destroyed') ||
+    message.includes('[browser]')
+  );
 }
 
 /**
@@ -223,5 +239,7 @@ async function closeBrowser(browser) {
 module.exports = {
   fetchSiteHtml,
   createBrowser,
-  closeBrowser
+  createPage,
+  closeBrowser,
+  shouldRecreatePage
 };

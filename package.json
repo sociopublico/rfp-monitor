@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node api/server.js",
     "scrape": "node scripts/run.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test test/*.test.js"
   },
   "keywords": [
     "rfp",
