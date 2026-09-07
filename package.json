@@ -1,14 +1,20 @@
 {
   "name": "n8n-proposals",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "api/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node api/server.js",
+    "scrape": "node scripts/run.js",
+    "test": "node --test test/*.test.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "rfp",
+    "monitor",
+    "scraper"
+  ],
+  "author": "sociopublico",
   "license": "ISC",
-  "description": "",
+  "description": "Monitor de sitios web para detectar RFPs y convocatorias relevantes para sociopúblico",
   "dependencies": {
     "cheerio": "^1.1.2",
     "csv-parser": "^3.2.0",

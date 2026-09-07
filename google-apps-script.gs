@@ -1,169 +1,161 @@
 /**
- * Script de Google Apps Script para actualizar status y keywords desde la API
- * 
- * Instrucciones:
- * 1. Abre tu Google Sheet
- * 2. Ve a Extensiones > Apps Script
- * 3. Pega este código
- * 4. Guarda el proyecto
- * 5. El script se ejecutará automáticamente al abrir el spreadsheet
+ * Apps Script del spreadsheet "Monitoreo de RFPs".
+ *
+ * Cómo instalarlo:
+ * 1. Abrí el spreadsheet → Extensiones → Apps Script
+ * 2. Reemplazá el código por este archivo y guardá
+ * 3. Ejecutá una vez `updateStatusAndKeywords` desde el editor y autorizá
+ *    el acceso (UrlFetchApp + Spreadsheet)
+ * 4. En el spreadsheet va a aparecer el menú "RFP Monitor"
+ *
+ * Importante:
+ * - Un onOpen simple NO puede llamar a la API (Google lo bloquea).
+ *   Por eso el menú; si querés auto-update al abrir, creá un activador
+ *   instalable: Reloj → Activadores → evento al abrir → updateStatusAndKeywords.
+ * - Siempre escribe en la hoja "Sitios RFPs", aunque estés mirando Keywords
+ *   o Propuestas identificadas (esas también tienen columna Link).
  */
 
 const API_URL = 'https://rfp.sociopublico.com/api/urls';
+const SITIOS_SHEET_NAME = 'Sitios RFPs';
 
-/**
- * Función que se ejecuta al abrir el spreadsheet
- */
 function onOpen() {
-  try {
-    updateStatusAndKeywords();
-  } catch (error) {
-    Logger.log('Error en onOpen: ' + error.toString());
-    SpreadsheetApp.getUi().alert('Error al actualizar datos: ' + error.message);
-  }
+  SpreadsheetApp.getUi()
+    .createMenu('RFP Monitor')
+    .addItem('Actualizar status y keywords', 'updateStatusAndKeywords')
+    .addToUi();
 }
 
-/**
- * Función principal que actualiza status y keywords
- */
+function manualUpdate() {
+  updateStatusAndKeywords();
+}
+
 function updateStatusAndKeywords() {
-  const sheet = SpreadsheetApp.getActiveSheet();
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SITIOS_SHEET_NAME) || SpreadsheetApp.getActiveSheet();
+
   if (!sheet) {
-    Logger.log('No hay hoja activa');
+    SpreadsheetApp.getUi().alert('No se encontró la hoja "' + SITIOS_SHEET_NAME + '".');
     return;
   }
-  
-  // Obtener datos de la API
+
+  if (sheet.getName() !== SITIOS_SHEET_NAME) {
+    SpreadsheetApp.getActiveSpreadsheet().toast(
+      'No encontré "' + SITIOS_SHEET_NAME + '". Actualicé la hoja activa: ' + sheet.getName(),
+      'RFP Monitor',
+      6
+    );
+  }
+
   const apiData = fetchApiData();
   if (!apiData || !apiData.urls || apiData.urls.length === 0) {
-    Logger.log('No se obtuvieron datos de la API');
+    SpreadsheetApp.getUi().alert(
+      'No pude leer la API (' + API_URL + '). El spreadsheet no se tocó.'
+    );
     return;
   }
-  
-  // Crear un mapa de URL -> datos para búsqueda rápida
+
   const urlMap = new Map();
-  apiData.urls.forEach(item => {
-    urlMap.set(item.url, item);
+  apiData.urls.forEach(function (item) {
+    urlMap.set(normalizeUrl(item.url), item);
   });
-  
-  // Encontrar las columnas
-  const headerRow = 1;
-  const lastColumn = sheet.getLastColumn();
+
   const lastRow = sheet.getLastRow();
-  
-  // Buscar columnas: Link, status, keywords
+  const lastColumn = sheet.getLastColumn();
+  if (lastRow < 2 || lastColumn < 1) {
+    return;
+  }
+
+  const headerRange = sheet.getRange(1, 1, 1, lastColumn);
+  const headers = headerRange.getValues()[0];
+
   let linkCol = -1;
   let statusCol = -1;
   let keywordsCol = -1;
-  
-  for (let col = 1; col <= lastColumn; col++) {
-    const headerValue = sheet.getRange(headerRow, col).getValue().toString().toLowerCase().trim();
+
+  for (let i = 0; i < headers.length; i++) {
+    const headerValue = String(headers[i] || '').toLowerCase().trim();
     if (headerValue === 'link') {
-      linkCol = col;
+      linkCol = i;
     } else if (headerValue === 'status') {
-      statusCol = col;
+      statusCol = i;
     } else if (headerValue === 'keywords') {
-      keywordsCol = col;
+      keywordsCol = i;
     }
   }
-  
+
   if (linkCol === -1) {
-    Logger.log('No se encontró la columna "Link"');
+    SpreadsheetApp.getUi().alert('No encontré la columna "Link" en ' + sheet.getName());
     return;
   }
-  
-  // Crear columnas si no existen
+
   if (statusCol === -1) {
-    statusCol = lastColumn + 1;
-    sheet.getRange(headerRow, statusCol).setValue('Status');
+    statusCol = lastColumn;
+    sheet.getRange(1, statusCol + 1).setValue('status');
   }
-  
   if (keywordsCol === -1) {
-    keywordsCol = lastColumn + 1;
-    if (statusCol === lastColumn + 1) {
-      keywordsCol = lastColumn + 2;
-    }
-    sheet.getRange(headerRow, keywordsCol).setValue('Keywords');
+    keywordsCol = Math.max(lastColumn, statusCol + 1);
+    sheet.getRange(1, keywordsCol + 1).setValue('keywords');
   }
-  
-  // Procesar cada fila
+
+  const numRows = lastRow - 1;
+  const linkValues = sheet.getRange(2, linkCol + 1, numRows, 1).getValues();
+  const statusValues = sheet.getRange(2, statusCol + 1, numRows, 1).getValues();
+  const keywordValues = sheet.getRange(2, keywordsCol + 1, numRows, 1).getValues();
+
   let updatedCount = 0;
-  for (let row = 2; row <= lastRow; row++) {
-    const linkValue = sheet.getRange(row, linkCol).getValue().toString().trim();
-    
-    if (!linkValue || linkValue === '') {
+  let unmatchedCount = 0;
+
+  for (let i = 0; i < numRows; i++) {
+    const linkValue = String(linkValues[i][0] || '').trim();
+    if (!linkValue) {
       continue;
     }
-    
-    // Buscar en el mapa (comparar URLs normalizadas)
-    const normalizedLink = normalizeUrl(linkValue);
-    let matchedData = null;
-    
-    for (const [apiUrl, data] of urlMap.entries()) {
-      if (normalizeUrl(apiUrl) === normalizedLink) {
-        matchedData = data;
-        break;
-      }
-    }
-    
-    if (matchedData) {
-      // Actualizar status
-      sheet.getRange(row, statusCol).setValue(matchedData.status || '');
-      
-      // Actualizar keywords (convertir array a string separado por comas)
-      const keywordsStr = Array.isArray(matchedData.keywords) 
-        ? matchedData.keywords.join(', ') 
-        : (matchedData.keywords || '');
-      sheet.getRange(row, keywordsCol).setValue(keywordsStr);
-      
+
+    const matched = urlMap.get(normalizeUrl(linkValue));
+    if (matched) {
+      statusValues[i][0] = matched.status || '';
+      keywordValues[i][0] = Array.isArray(matched.keywords)
+        ? matched.keywords.join(', ')
+        : (matched.keywords || '');
       updatedCount++;
     } else {
-      // Si no se encuentra, limpiar las celdas
-      sheet.getRange(row, statusCol).setValue('');
-      sheet.getRange(row, keywordsCol).setValue('');
+      unmatchedCount++;
     }
   }
-  
-  Logger.log('Actualizadas ' + updatedCount + ' filas');
-  
-  // Mostrar notificación
+
+  sheet.getRange(2, statusCol + 1, numRows, 1).setValues(statusValues);
+  sheet.getRange(2, keywordsCol + 1, numRows, 1).setValues(keywordValues);
+
   SpreadsheetApp.getActiveSpreadsheet().toast(
-    'Actualización completada: ' + updatedCount + ' URLs actualizadas',
-    'Actualización de Status',
-    3
+    'Listo: ' + updatedCount + ' URLs actualizadas' +
+      (unmatchedCount ? ' · ' + unmatchedCount + ' todavía no aparecen en la API' : ''),
+    'RFP Monitor',
+    5
   );
 }
 
-/**
- * Normaliza una URL para comparación (remueve trailing slash, convierte a lowercase, etc)
- */
 function normalizeUrl(url) {
   if (!url) return '';
-  
+
   try {
-    const urlObj = new URL(url.trim());
+    const urlObj = new URL(String(url).trim());
     let normalized = urlObj.protocol + '//' + urlObj.hostname.toLowerCase();
-    
-    // Agregar path sin trailing slash
+
     if (urlObj.pathname && urlObj.pathname !== '/') {
       normalized += urlObj.pathname.replace(/\/$/, '');
     }
-    
-    // Agregar query string si existe
+
     if (urlObj.search) {
       normalized += urlObj.search;
     }
-    
+
     return normalized;
   } catch (e) {
-    // Si no es una URL válida, retornar normalizada sin protocolo
-    return url.trim().toLowerCase().replace(/\/$/, '');
+    return String(url).trim().toLowerCase().replace(/\/$/, '');
   }
 }
 
-/**
- * Obtiene datos de la API
- */
 function fetchApiData() {
   try {
     const response = UrlFetchApp.fetch(API_URL, {
@@ -173,27 +165,16 @@ function fetchApiData() {
       },
       muteHttpExceptions: true
     });
-    
+
     const responseCode = response.getResponseCode();
-    
     if (responseCode !== 200) {
       Logger.log('Error en API: ' + responseCode + ' - ' + response.getContentText());
       return null;
     }
-    
-    const responseText = response.getContentText();
-    const data = JSON.parse(responseText);
-    
-    return data;
+
+    return JSON.parse(response.getContentText());
   } catch (error) {
     Logger.log('Error al obtener datos de la API: ' + error.toString());
     return null;
   }
-}
-
-/**
- * Función manual para ejecutar la actualización (útil para testing)
- */
-function manualUpdate() {
-  updateStatusAndKeywords();
 }

@@ -2,6 +2,8 @@ const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
 
+const { classifyUrlStatus, pickDisplayEvent, parseJsonl } = require('../scripts/urlStatus');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -13,6 +15,9 @@ const DIFFS_DIR = path.join(DATA_DIR, 'diffs');
 const CHANGES_DIR = path.join(DATA_DIR, 'changes');
 const TEXT_DIR = path.join(DATA_DIR, 'snapshots', 'text');
 const HISTORY_FILE = path.join(DATA_DIR, 'history', 'url-history.jsonl');
+const RUNS_INDEX = path.join(DATA_DIR, 'runs', 'index.jsonl');
+const RUNS_DIR = path.join(DATA_DIR, 'runs');
+const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 
 /**
  * Genera slug desde URL (misma lógica que scripts/utils.js)
@@ -226,18 +231,9 @@ app.get('/api/urls', async (req, res) => {
     
     // Leer histórico
     const content = await fs.readFile(HISTORY_FILE, 'utf-8');
-    const lines = content.split('\n').filter(line => line.trim());
+    const events = parseJsonl(content);
     
-    // Parsear eventos
-    const events = lines.map(line => {
-      try {
-        return JSON.parse(line);
-      } catch (error) {
-        return null;
-      }
-    }).filter(e => e !== null);
-    
-    // Agrupar por URL y guardar último evento + último éxito + último error
+    // Agrupar por URL y guardar último evento + último éxito + último error + baselines
     const urlMap = new Map();
     
     for (const event of events) {
@@ -249,7 +245,8 @@ app.get('/api/urls', async (req, res) => {
         urlMap.set(event.url, {
           latest: event,
           lastSuccess: event.status === 'success' ? event : null,
-          lastError: event.status === 'error' ? event : null
+          lastError: event.status === 'error' ? event : null,
+          baselineCount: event.textHash ? 1 : 0
         });
         continue;
       }
@@ -272,6 +269,9 @@ app.get('/api/urls', async (req, res) => {
           bucket.lastError = event;
         }
       }
+      if (event.textHash) {
+        bucket.baselineCount += 1;
+      }
       urlMap.set(event.url, bucket);
     }
     
@@ -280,46 +280,18 @@ app.get('/api/urls', async (req, res) => {
       const event = bucket.latest;
       const lastSuccess = bucket.lastSuccess;
       const lastError = bucket.lastError;
+      const displayEvent = pickDisplayEvent(event, lastSuccess);
+      const scrapeFailed = Boolean(event && event.status === 'error' && lastSuccess);
 
-      // Usar changedChars del evento si existe, si no calcularlo
-      const textLength = event.textLength || 0;
-      const changeRatio = event.changeRatio || 0;
-      const changedChars = event.changedChars !== undefined 
-        ? event.changedChars 
+      const textLength = displayEvent.textLength || 0;
+      const changeRatio = displayEvent.changeRatio || 0;
+      const changedChars = displayEvent.changedChars !== undefined 
+        ? displayEvent.changedChars 
         : Math.round(textLength * changeRatio);
-      const finalScore = event.finalScore || 0;
-      const keywordsInChanges = event.keywordsInChanges || [];
-      
-      // Determinar status basado en keywords en cambios (lo más importante)
-      let status = 'error';
-      if (event.status === 'success') {
-        if (event.isFirstRun) {
-          // Primera ejecución: si hay keywords, es relevante
-          if (keywordsInChanges.length >= 2) {
-            status = 'primera ejecución - relevante';
-          } else if (keywordsInChanges.length === 1) {
-            status = 'primera ejecución - posible';
-          } else {
-            status = 'primera ejecución';
-          }
-        } else if (!event.hasChanged || changedChars === 0) {
-          status = 'sin cambios';
-        } else {
-          // LÓGICA BASADA EN KEYWORDS EN CAMBIOS
-          // 2+ keywords en cambios = relevante
-          // 1 keyword en cambios = posiblemente relevante
-          // 0 keywords pero cambió mucho = revisar
-          if (keywordsInChanges.length >= 2 || finalScore >= 70) {
-            status = 'cambios relevantes';
-          } else if (keywordsInChanges.length === 1 || finalScore >= 50) {
-            status = 'cambios - posiblemente relevante';
-          } else if (changeRatio >= 0.05) {
-            status = 'cambios - revisar';
-          } else {
-            status = 'cambios irrelevantes';
-          }
-        }
-      }
+      const finalScore = displayEvent.finalScore || 0;
+      const keywordsInChanges = displayEvent.keywordsInChanges || [];
+      const hadPriorBaseline = bucket.baselineCount > 1;
+      const status = classifyUrlStatus(displayEvent, { hadPriorBaseline });
       
       return {
         url,
@@ -328,12 +300,14 @@ app.get('/api/urls', async (req, res) => {
         changedChars: changedChars,
         changeRatio: changeRatio,
         keywords: keywordsInChanges,  // Solo keywords EN los cambios
-        keywordsTotal: event.foundKeywords?.length || 0,  // Keywords en texto completo
+        keywordsTotal: displayEvent.foundKeywords?.length || 0,  // Keywords en texto completo
         lastScraped: event.timestamp,
+        lastSuccessfulScrape: lastSuccess?.timestamp || null,
         finalScore: finalScore,
         lastErrorAt: lastError?.timestamp || null,
         errorType: event.status === 'error' ? (event.errorType || 'unknown') : null,
         errorMessage: event.status === 'error' ? (event.errorMessage || 'Unknown error') : null,
+        scrapeFailed,
         lastSuccessAt: lastSuccess?.timestamp || null,
         lastSuccessTextLength: lastSuccess?.textLength || null
       };
@@ -562,6 +536,59 @@ app.get('/api/errors', async (req, res) => {
     });
   }
 });
+
+/**
+ * Listado de corridas (más reciente primero)
+ */
+app.get('/api/runs', async (req, res) => {
+  try {
+    const content = await fs.readFile(RUNS_INDEX, 'utf-8');
+    const runs = parseJsonl(content).reverse();
+    const limitNum = parseInt(req.query.limit, 10);
+    const sliced = Number.isFinite(limitNum) && limitNum > 0 ? runs.slice(0, limitNum) : runs.slice(0, 20);
+    res.json({
+      total: runs.length,
+      runs: sliced
+    });
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return res.json({ total: 0, runs: [] });
+    }
+    console.error('Error reading runs index:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'Failed to read runs index'
+    });
+  }
+});
+
+/**
+ * Detalle de la última corrida (incluye URLs procesadas)
+ */
+app.get('/api/runs/latest', async (req, res) => {
+  try {
+    const content = await fs.readFile(RUNS_INDEX, 'utf-8');
+    const runs = parseJsonl(content);
+    if (runs.length === 0) {
+      return res.status(204).send();
+    }
+    const latest = runs[runs.length - 1];
+    const summaryPath = path.join(DATA_DIR, latest.summaryFile || path.join('runs', `${latest.runId}.json`));
+    const summary = JSON.parse(await fs.readFile(summaryPath, 'utf-8'));
+    res.json(summary);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return res.status(204).send();
+    }
+    console.error('Error reading latest run:', error);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'Failed to read latest run'
+    });
+  }
+});
+
+app.use(express.static(PUBLIC_DIR));
 
 // Error handler
 app.use((err, req, res, next) => {

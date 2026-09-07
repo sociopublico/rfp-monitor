@@ -192,12 +192,24 @@ async function detectChange(url, slug, currentText) {
   const currentHash = calculateTextHash(currentText);
   const currentNormalized = normalizeText(currentText);
   
-  // Buscar último evento en histórico
-  const lastEvent = await HistoryLogger.getLastEventForUrl(url);
-  
-  // Si no hay histórico previo, es la primera vez
+  // Baseline = último scrape EXITOSO (con textHash). Un error reciente no cuenta
+  // como "primera ejecución": si Chromium se cae al final de una corrida, las
+  // URLs que ya se venían monitoreando tienen que compararse contra el éxito anterior.
+  const lastEvent = await HistoryLogger.getLastBaselineEventForUrl(url);
+
+  let snapshotText = '';
+  try {
+    snapshotText = await fs.readFile(path.join(TEXT_DIR, `${slug}.txt`), 'utf-8');
+  } catch {
+    snapshotText = '';
+  }
+
+  const hasHistoryBaseline = Boolean(lastEvent && lastEvent.textHash);
+  const hasSnapshotBaseline = Boolean(snapshotText);
+
+  // Si no hay histórico previo NI snapshot, es la primera vez
   // En primera ejecución, consideramos TODO el texto como "cambio" para análisis de keywords
-  if (!lastEvent || !lastEvent.textHash) {
+  if (!hasHistoryBaseline && !hasSnapshotBaseline) {
     let keywordsInChanges = [];
     try {
       const allKeywords = await loadKeywords();
@@ -223,9 +235,9 @@ async function detectChange(url, slug, currentText) {
     };
   }
   
-  // Comparar hashes
-  const hashChanged = lastEvent.textHash !== currentHash;
-  
+  const previousHash = lastEvent?.textHash || (snapshotText ? calculateTextHash(snapshotText) : null);
+  const hashChanged = !previousHash || previousHash !== currentHash;
+
   if (!hashChanged) {
     return {
       hasChanged: false,
@@ -238,16 +250,12 @@ async function detectChange(url, slug, currentText) {
       addedText: ''
     };
   }
-  
-  // Intentar leer texto anterior del snapshot si existe
-  let oldText = '';
-  try {
-    const oldTextPath = path.join(TEXT_DIR, `${slug}.txt`);
-    oldText = await fs.readFile(oldTextPath, 'utf-8');
-  } catch {
-    // No existe snapshot anterior, usar aproximación
-    const lengthDiff = Math.abs(currentNormalized.length - (lastEvent.textLength || 0));
-    const avgLength = (currentNormalized.length + (lastEvent.textLength || 1)) / 2;
+
+  const oldText = snapshotText;
+  if (!oldText) {
+    const previousLength = lastEvent?.textLength || 0;
+    const lengthDiff = Math.abs(currentNormalized.length - previousLength);
+    const avgLength = (currentNormalized.length + (previousLength || 1)) / 2;
     const estimatedRatio = avgLength > 0 ? Math.min(1, lengthDiff / avgLength) : 0.5;
     
     // Sin texto anterior, analizar todo el texto actual
