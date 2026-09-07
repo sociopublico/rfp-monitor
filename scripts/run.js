@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs').promises;
 const { readAndFilterCsv } = require('./readCsv');
-const { fetchSiteHtml, createBrowser, createPage, closeBrowser, shouldRecreatePage } = require('./fetchSite');
+const { fetchSiteHtml, createBrowser, closeBrowser, shouldRecreatePage } = require('./fetchSite');
 const { startRunLog } = require('./runLog');
 const {
   generateSlug,
@@ -42,6 +42,9 @@ function extractErrorType(errorMessage) {
   }
   if (message.includes('[browser]') || message.includes('target closed')) {
     return 'browser';
+  }
+  if (message.includes('[frame_detached]') || message.includes('detached frame') || message.includes('execution context was destroyed')) {
+    return 'frame_detached';
   }
   return 'unknown';
 }
@@ -261,8 +264,22 @@ async function main() {
     
     // 4. Crear browser y page (reutilizar para todas las URLs)
     console.log('🌐 Iniciando navegador...');
-    const { browser, page: initialPage } = await createBrowser();
-    let page = initialPage;
+    let browser;
+    let page;
+    ({ browser, page } = await createBrowser());
+
+    async function restartBrowser(reason) {
+      console.warn(`⚠️  ${reason}. Reiniciando Chromium completo (una page nueva no alcanza)...`);
+      try {
+        await closeBrowser(browser);
+      } catch (closeError) {
+        console.warn(`⚠️  No se pudo cerrar Chromium: ${closeError.message}`);
+      }
+      const fresh = await createBrowser();
+      browser = fresh.browser;
+      page = fresh.page;
+      console.log('✅ Chromium reiniciado');
+    }
     
     try {
       // 5. Procesar cada URL
@@ -272,23 +289,18 @@ async function main() {
         const row = filteredRows[i];
         console.log(`\n[${i + 1}/${filteredRows.length}] Procesando: ${row.link}`);
         
-        const metadata = await processUrl(page, row.link, existingMetadata);
-        newMetadata.push(metadata);
+        let metadata = await processUrl(page, row.link, existingMetadata);
 
         if (metadata.error && shouldRecreatePage(metadata.error)) {
-          console.warn('⚠️  Chromium quedó en un frame inválido. Recreando la página para no contaminar el resto de la corrida...');
-          try {
-            await page.close();
-          } catch (closeError) {
-            console.warn(`⚠️  No se pudo cerrar la page anterior: ${closeError.message}`);
-          }
-          try {
-            page = await createPage(browser);
-            console.log('✅ Página de Chromium recreada');
-          } catch (recreateError) {
-            console.error(`❌ No se pudo recrear la page: ${recreateError.message}`);
+          await restartBrowser('Chromium quedó en un frame inválido');
+          console.log(`🔁 Reintentando ${row.link} con browser nuevo...`);
+          metadata = await processUrl(page, row.link, existingMetadata);
+          if (metadata.error && shouldRecreatePage(metadata.error)) {
+            await restartBrowser('El reintento también rompió Chromium');
           }
         }
+
+        newMetadata.push(metadata);
         
         // Pausa entre requests para no sobrecargar el servidor
         if (i < filteredRows.length - 1) {

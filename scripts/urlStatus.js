@@ -1,8 +1,19 @@
 /**
  * Clasifica el status visible de una URL (Sheet + API + home).
  * "Primera ejecución" solo aplica si no hubo un scrape exitoso anterior
- * con textHash. Un error reciente no borra el baseline.
+ * con textHash. Un error reciente no borra el baseline ni el status del Sheet.
  */
+
+function pickDisplayEvent(latest, lastSuccess) {
+  if (latest && latest.status === 'success') {
+    return latest;
+  }
+  if (lastSuccess) {
+    return lastSuccess;
+  }
+  return latest;
+}
+
 function classifyUrlStatus(event, options = {}) {
   if (!event || event.status !== 'success') {
     return 'error';
@@ -89,6 +100,7 @@ function countBaselinesForUrl(events, url) {
 
 module.exports = {
   classifyUrlStatus,
+  pickDisplayEvent,
   parseJsonl,
   lastBaselineEventForUrl,
   countBaselinesForUrl

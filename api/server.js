@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
 
-const { classifyUrlStatus, parseJsonl } = require('../scripts/urlStatus');
+const { classifyUrlStatus, pickDisplayEvent, parseJsonl } = require('../scripts/urlStatus');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -280,16 +280,18 @@ app.get('/api/urls', async (req, res) => {
       const event = bucket.latest;
       const lastSuccess = bucket.lastSuccess;
       const lastError = bucket.lastError;
+      const displayEvent = pickDisplayEvent(event, lastSuccess);
+      const scrapeFailed = Boolean(event && event.status === 'error' && lastSuccess);
 
-      const textLength = event.textLength || 0;
-      const changeRatio = event.changeRatio || 0;
-      const changedChars = event.changedChars !== undefined 
-        ? event.changedChars 
+      const textLength = displayEvent.textLength || 0;
+      const changeRatio = displayEvent.changeRatio || 0;
+      const changedChars = displayEvent.changedChars !== undefined 
+        ? displayEvent.changedChars 
         : Math.round(textLength * changeRatio);
-      const finalScore = event.finalScore || 0;
-      const keywordsInChanges = event.keywordsInChanges || [];
+      const finalScore = displayEvent.finalScore || 0;
+      const keywordsInChanges = displayEvent.keywordsInChanges || [];
       const hadPriorBaseline = bucket.baselineCount > 1;
-      const status = classifyUrlStatus(event, { hadPriorBaseline });
+      const status = classifyUrlStatus(displayEvent, { hadPriorBaseline });
       
       return {
         url,
@@ -298,12 +300,14 @@ app.get('/api/urls', async (req, res) => {
         changedChars: changedChars,
         changeRatio: changeRatio,
         keywords: keywordsInChanges,  // Solo keywords EN los cambios
-        keywordsTotal: event.foundKeywords?.length || 0,  // Keywords en texto completo
+        keywordsTotal: displayEvent.foundKeywords?.length || 0,  // Keywords en texto completo
         lastScraped: event.timestamp,
+        lastSuccessfulScrape: lastSuccess?.timestamp || null,
         finalScore: finalScore,
         lastErrorAt: lastError?.timestamp || null,
         errorType: event.status === 'error' ? (event.errorType || 'unknown') : null,
         errorMessage: event.status === 'error' ? (event.errorMessage || 'Unknown error') : null,
+        scrapeFailed,
         lastSuccessAt: lastSuccess?.timestamp || null,
         lastSuccessTextLength: lastSuccess?.textLength || null
       };

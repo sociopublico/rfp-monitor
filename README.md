@@ -163,9 +163,7 @@ El script siempre escribe en `Sitios RFPs`, aunque estés parado en Keywords o e
 
 ## Primera ejecución “falsa”
 
-Si Chromium se cae al final de una corrida, las últimas URLs quedan como `error` (típico: `frame_detached`). Antes, la corrida siguiente las marcaba como **primera ejecución** porque el último evento no tenía `textHash`. Eso le pasó a Loli con ~29 sitios que ya se monitoreaban.
-
-Ahora el baseline es el último scrape **exitoso**, y un frame roto recrea la page de Chromium para no contagiar el resto de la corrida. La API tampoco muestra “primera ejecución” si esa URL ya tuvo un éxito anterior.
+Si Chromium se cae a mitad de una corrida (`frame_detached` / execution context destroyed), las URLs que siguen no se pueden scrapear con la misma instancia. El scraper **reinicia Chromium entero** y reintenta esa URL. En el Sheet, un error de scrape **no pisa** el último status útil: se sigue mostrando el último éxito. El fallo queda en `lastErrorAt` / `/api/errors`.
 
 ## Cómo se decide si algo importa
 

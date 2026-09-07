@@ -2,6 +2,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const {
   classifyUrlStatus,
+  pickDisplayEvent,
   lastBaselineEventForUrl,
   countBaselinesForUrl,
   parseJsonl
@@ -36,6 +37,24 @@ test('Loli case: isFirstRun mal marcado no se muestra si ya había baseline', ()
   };
   assert.equal(classifyUrlStatus(latest, { hadPriorBaseline: false }), 'primera ejecución - relevante');
   assert.equal(classifyUrlStatus(latest, { hadPriorBaseline: true }), 'sin cambios');
+});
+
+test('un error de scrape no pisa el status del último éxito', () => {
+  const latest = {
+    status: 'error',
+    errorType: 'frame_detached',
+    timestamp: '2026-09-07T02:00:00.000Z'
+  };
+  const lastSuccess = {
+    status: 'success',
+    isFirstRun: false,
+    hasChanged: false,
+    changedChars: 0,
+    keywordsInChanges: []
+  };
+  const display = pickDisplayEvent(latest, lastSuccess);
+  assert.equal(classifyUrlStatus(display, { hadPriorBaseline: true }), 'sin cambios');
+  assert.equal(pickDisplayEvent(latest, null).status, 'error');
 });
 
 test('cambios relevantes siguen mandando si no es primera ejecución', () => {
