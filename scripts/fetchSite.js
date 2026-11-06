@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const { setTimeout: delay } = require('node:timers/promises');
 
 const TIMEOUT = 60000; // 60 segundos
 
@@ -66,7 +67,8 @@ async function fetchSiteHtml(page, url) {
       console.warn(`⚠️  Detached frame en ${url}. Reintentando captura de HTML...`);
 
       // Reintento 1: esperar estabilización y usar evaluate del documento
-      await page.waitForTimeout(1200);
+      // page.waitForTimeout fue removido en Puppeteer >= 22
+      await delay(1200);
       try {
         const htmlViaEval = await page.evaluate(() => document.documentElement.outerHTML);
         if (htmlViaEval && htmlViaEval.length > 0) {

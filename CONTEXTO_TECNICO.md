@@ -70,8 +70,8 @@ scripts/historyLogger.js   JSONL append-only + getLastEventForUrl.
 scripts/alertManager.js    escribe alertas.
 scripts/updateStatus.js    latest.json.
 google-apps-script.gs      se pega a mano en el Sheet; pega Status/Keywords.
-Dockerfile                 node:20-alpine + chromium del sistema. CMD = API.
-docker-compose.yml         Traefik + volumen data + shm 2gb.
+Dockerfile                 node:24-alpine + chromium del sistema, USER node. CMD = API.
+docker-compose.yml         Traefik + volumen data + shm 2gb; non-root, read_only, cap_drop.
 ```
 
 No hay tests. No hay scheduler. No hay `.env`: las URLs del Sheet están en el código.
@@ -152,7 +152,7 @@ Logs del scraper van a stdout con prefijos (`📥`, `🔄`, `🎯`, `❌`). No h
 - No hay notificaciones cuando se genera una alerta; solo el archivo y lo que el Sheet muestre después.
 - `readCsv.js` y `loadKeywords.js` duplican el downloader HTTP.
 - `package.json` name `n8n-proposals` no coincide con el repo `rfp-monitor`.
-- `page.waitForTimeout` en `fetchSite.js` está deprecado en Puppeteer reciente; si se actualiza el paquete, puede romper.
+- Delay tras `detached Frame` usa `node:timers/promises` (no `page.waitForTimeout`, removido en Puppeteer).
 - Primera ejecución: `hasChanged = false` a propósito (no hay baseline). Las keywords se buscan en el texto completo.
 - `data/` no viaja en git ni en la imagen (`.dockerignore` excluye snapshots/diffs). En un contenedor nuevo, sin volumen, la API arranca vacía.
 

@@ -21,7 +21,7 @@ En `https://rfp.sociopublico.com` hay una página de inicio que explica el flujo
 
 ## Requisitos
 
-- Node.js 20+
+- Node.js 24+ (LTS)
 - Chromium / Chrome (Puppeteer lo baja solo en local; en Docker se usa el de Alpine)
 - Acceso de red a Google Sheets (CSV público) y a los sitios a monitorear
 
@@ -61,10 +61,12 @@ docker compose up -d
 
 Notas:
 
-- El volumen `./data` es persistente: snapshots, histórico, diffs y alertas viven ahí.
+- El volumen `./data` es persistente: snapshots, histórico, diffs y alertas viven ahí. Tiene que ser escribible por uid/gid `1000` (usuario `node`).
 - `shm_size: 2gb` es necesario para Chromium.
-- Traefik espera la red externa `traefik-public` y el host `rfp.sociopublico.com`.
+- El contenedor corre como non-root, con `read_only`, `cap_drop: ALL` y `no-new-privileges` (ver `docker-compose.yml`).
+- Traefik espera la red externa `traefik-public` y el host `rfp.sociopublico.com`. No se publica el puerto 3000 en el host.
 - En la imagen, `PUPPETEER_EXECUTABLE_PATH` apunta a `/usr/bin/chromium-browser`.
+- Detalle del upgrade a Node 24 LTS: [`docs/SECURITY_UPGRADE_NODE24.md`](docs/SECURITY_UPGRADE_NODE24.md).
 
 Para scrapear dentro del contenedor:
 
