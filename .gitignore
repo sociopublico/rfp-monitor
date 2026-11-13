@@ -1,5 +1,6 @@
 /node_modules
 .history
+.site-export-*
 data/*
 !data/snapshots/
 data/snapshots/*

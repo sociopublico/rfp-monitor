@@ -607,10 +607,11 @@ app.use((req, res) => {
   });
 });
 
-// Start server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 RFP Monitor API server running on port ${PORT}`);
-  console.log(`📁 Data directory: ${DATA_DIR}`);
-});
+if (require.main === module) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 RFP Monitor API server running on port ${PORT}`);
+    console.log(`📁 Data directory: ${DATA_DIR}`);
+  });
+}
 
 module.exports = app;

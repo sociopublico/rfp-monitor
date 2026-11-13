@@ -43,6 +43,7 @@ jobs:
           [ -f data/history/url-history.jsonl ] && paths+=(data/history/url-history.jsonl)
           [ -f data/status/latest.json ] && paths+=(data/status/latest.json)
           [ -d reports ] && paths+=(reports)
+          [ -f site/index.html ] && paths+=(site)
           if [ ${#paths[@]} -eq 0 ]; then
             echo "Nada para publicar"
             exit 0

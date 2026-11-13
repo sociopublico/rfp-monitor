@@ -22,8 +22,11 @@ data/                   ← fuente de verdad local (gitignore)
         ▼
 api/server.js           ← Express, puerto 3000, solo GET
         │
-        ├─ Traefik → https://rfp.sociopublico.com
-        └─ google-apps-script.gs → columnas Status / Keywords del Sheet
+        ├─ Traefik → https://rfp.sociopublico.com   (se puede apagar)
+        └─ site/  ← el mismo HTML y los mismos JSON
+              └─ GitHub Pages → rfp.sociopublico.com
+
+google-apps-script.gs     ← columnas Status / Keywords del Sheet
 ```
 
 Dos procesos distintos:
@@ -33,7 +36,7 @@ Dos procesos distintos:
 | Scraper | CSV de URLs | `npm run scrape` | escribe `data/` |
 | API | `data/` | `npm start` | no escribe nada |
 
-Docker Compose solo levanta la API. El scraper de los lunes es GitHub Actions (`.github/workflows/scrape-monday.yml`). Un `docker exec rfp-monitor node scripts/run.js` sigue siendo la corrida manual en el servidor.
+Docker Compose solo levanta la API. El scraper de los lunes es GitHub Actions (`.github/workflows/scrape-monday.yml`) y deja `site/` listo. `.github/workflows/pages.yml` publica esa carpeta. Un `docker exec rfp-monitor node scripts/run.js` sigue siendo la corrida manual en el servidor.
 
 ## Flujo de una corrida
 
@@ -73,6 +76,7 @@ scripts/publicationDate.js fecha dicha en el texto nuevo (no el día en que la v
 scripts/weekWords.js       15 palabras de peso de los RFPs nuevos de la semana.
 scripts/weekReport.js      reports/YYYY-MM-DD.json
 scripts/pushSheet.js       POST del reporte al Apps Script, si hay secrets.
+scripts/exportSite.js      vuelca la home y los JSON de la API a site/.
 google-apps-script.gs      se pega a mano en el Sheet; pega Status/Keywords y, vía doPost, la hoja Semana.
 Dockerfile                 node:20-alpine + chromium del sistema. CMD = API.
 docker-compose.yml         Traefik + volumen data + shm 2gb.

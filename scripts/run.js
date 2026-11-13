@@ -22,6 +22,7 @@ const {
 const { generateAlert } = require('./alertManager');
 const { updateStatus } = require('./updateStatus');
 const { writeWeekReport } = require('./weekReport');
+const { exportSite } = require('./exportSite');
 const config = require('../config/profile');
 
 function extractErrorType(errorMessage) {
@@ -377,6 +378,12 @@ async function main() {
         });
       } catch (runLogError) {
         console.error('⚠️  Error al guardar log de corrida:', runLogError.message);
+      }
+
+      try {
+        await exportSite();
+      } catch (siteError) {
+        console.error('⚠️  Error al exportar el sitio estático:', siteError.message);
       }
       
       // 10. Resumen final

@@ -197,6 +197,23 @@ docker cp rfp-monitor:/app/data/history/url-history.jsonl ./data/history/url-his
 
 Esos tres archivos se commitean una vez, antes del primer lunes. El HTML no hace falta.
 
+## El sitio, sin el servidor
+
+La página de `rfp.sociopublico.com` no necesita un proceso prendido. Al terminar el scrape, `scripts/exportSite.js` copia la home y vuelca los JSON de Express a [`site/`](site/): `api/status.json`, `api/urls.json`, `api/alerts.json`, `api/errors.json`, `api/runs.json`, `api/history.json` (las últimas 20 líneas) y `health.json`. Si todavía no hubo corrida, no escribe `status.json` y la home muestra el estado vacío.
+
+[`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica esa carpeta en GitHub Pages cada vez que `site/` llega a `main`. No scrapea. El archivo `site/CNAME` deja el dominio listo para `rfp.sociopublico.com`.
+
+GitHub Pages en un repo privado de una organización pide GitHub Team o Enterprise. Si el plan no lo incluye, el deploy falla y el HTML igual queda en el repo. El camino es habilitar Pages en la organización, no volver a prender el droplet.
+
+Para apagar el servidor, cuando el deploy de Pages esté verde:
+
+1. En el repo, Settings → Pages → Source: GitHub Actions. La primera corrida del workflow lo pide si todavía no está.
+2. En el DNS de `rfp.sociopublico.com`, sacar el registro que apunta al droplet y poner los que indica GitHub para el dominio (el asistente de Pages los muestra al guardar el custom domain).
+3. En el Apps Script, cambiar `API_URL` a `https://rfp.sociopublico.com/api/urls.json` y volver a pegar el script. El menú manual lee el mismo JSON. El POST del lunes no usa esta URL.
+4. Recién ahí se puede apagar el droplet. `docker-compose.yml` se queda por si hay que volver atrás.
+
+`/api/text?url=` y `/api/changes?url=` no se publican: son un archivo por URL. El texto queda en `data/snapshots/text/`.
+
 ## Primera ejecución “falsa”
 
 Si Chromium se cae a mitad de una corrida (`frame_detached` / execution context destroyed), las URLs que siguen no se pueden scrapear con la misma instancia. El scraper **reinicia Chromium entero** y reintenta esa URL. En el Sheet, un error de scrape **no pisa** el último status útil: se sigue mostrando el último éxito. El fallo queda en `lastErrorAt` / `/api/errors`.

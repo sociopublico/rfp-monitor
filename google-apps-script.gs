@@ -26,6 +26,9 @@
  *   RFPs nuevos). El menú manual no la toca.
  */
 
+// Mientras el droplet sirva Express, la ruta no lleva extensión.
+// Cuando el dominio apunte a GitHub Pages, cambiar a:
+// https://rfp.sociopublico.com/api/urls.json
 const API_URL = 'https://rfp.sociopublico.com/api/urls';
 const SITIOS_SHEET_NAME = 'Sitios RFPs';
 const SEMANA_SHEET_NAME = 'Semana';
