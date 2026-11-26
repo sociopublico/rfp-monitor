@@ -176,7 +176,7 @@ El script siempre escribe en `Sitios RFPs`, aunque estés parado en Keywords o e
 Cada corrida:
 
 1. Baja el CSV público, abre las ~170 URLs con Chrome y compara contra el texto de la corrida anterior.
-2. Commitea el texto nuevo, el historial y `reports/YYYY-MM-DD.json`.
+2. Commitea el texto nuevo, el historial y `reports/YYYY-MM-DD.json`. Si `main` se movió durante la corrida, rebasea y reintenta el push. Además deja un artifact `scrape-<run>` por 14 días, por si el push falla.
 3. Si están los secrets, hace POST al Apps Script. Eso actualiza `status` y `keywords` de las filas que ya existen. No agrega organizaciones.
 
 `reports/YYYY-MM-DD.json` trae, por URL, `url`, `status` y `keywords`. En los cambios relevantes o posibles de esa semana suma:
