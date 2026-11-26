@@ -19,6 +19,9 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
 
       - uses: actions/setup-node@v4
         with:
@@ -32,6 +35,20 @@ jobs:
 
       - name: Correr el scraper
         run: npm run scrape
+
+      - name: Guardar copia de la corrida
+        uses: actions/upload-artifact@v4
+        with:
+          name: scrape-${{ github.run_id }}
+          retention-days: 14
+          if-no-files-found: ignore
+          path: |
+            data/snapshots/text
+            data/snapshots/metadata.json
+            data/history/url-history.jsonl
+            data/status/latest.json
+            reports
+            site
 
       - name: Publicar baseline y reporte
         run: |
@@ -51,10 +68,19 @@ jobs:
           git add -- "${paths[@]}"
           if git diff --cached --quiet; then
             echo "Sin cambios para commitear"
-          else
-            git commit -m "scrape: resultados del $(date -u +%F)"
-            git push
+            exit 0
           fi
+          git commit -m "scrape: resultados del $(date -u +%F)"
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "main se movió mientras corría el scrape. Reintento $i."
+          done
+          echo "No se pudo subir. La copia queda en el artifact de este job."
+          exit 1
 
       - name: Actualizar spreadsheet
         env:
