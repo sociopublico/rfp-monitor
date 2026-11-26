@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:26-alpine
 
 WORKDIR /app
 
@@ -15,7 +15,7 @@ RUN apk add --no-cache \
 
 # Configurar Puppeteer para usar Chromium del sistema
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 # Copiar archivos de dependencias
 COPY package.json package-lock.json ./

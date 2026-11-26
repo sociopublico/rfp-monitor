@@ -94,12 +94,16 @@ async function createBrowser() {
   // En Alpine, Chromium puede estar en diferentes ubicaciones
   const fs = require('fs');
   let executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
-  
+  if (executablePath && !fs.existsSync(executablePath)) {
+    console.warn(`⚠️  Chromium configurado no existe: ${executablePath}`);
+    executablePath = undefined;
+  }
+
   if (!executablePath && process.platform === 'linux') {
     // Probar diferentes ubicaciones comunes de Chromium
     const possiblePaths = [
-      '/usr/bin/chromium-browser',
       '/usr/bin/chromium',
+      '/usr/bin/chromium-browser',
       '/usr/bin/google-chrome',
       '/usr/bin/google-chrome-stable'
     ];

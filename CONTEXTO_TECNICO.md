@@ -78,7 +78,8 @@ scripts/weekReport.js      reports/YYYY-MM-DD.json
 scripts/pushSheet.js       POST del reporte al Apps Script, si hay secrets.
 scripts/exportSite.js      vuelca la home y los JSON de la API a site/.
 google-apps-script.gs      se pega a mano en el Sheet; pega Status/Keywords y, vía doPost, la hoja Semana.
-Dockerfile                 node:20-alpine + chromium del sistema. CMD = API.
+Dockerfile                 node:26-alpine + chromium del sistema. CMD = API.
+config/ignoreWords.js      palabras que el ranking semanal obvia, además de artículos y pronombres.
 docker-compose.yml         Traefik + volumen data + shm 2gb.
 ```
 

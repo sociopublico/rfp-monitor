@@ -21,7 +21,7 @@ En `https://rfp.sociopublico.com` hay una página de inicio que explica el flujo
 
 ## Requisitos
 
-- Node.js 20+
+- Node.js 26 (la línea LTS que sigue recibiendo parches de seguridad; Node 20 ya no)
 - Chromium / Chrome (Puppeteer lo baja solo en local; en Docker se usa el de Alpine)
 - Acceso de red a Google Sheets (CSV público) y a los sitios a monitorear
 
@@ -184,7 +184,7 @@ Cada corrida:
 - `aparecioEntre`: entre la corrida anterior y esta. No es el día en que el sitio publicó el RFP. Para eso habría que scrapear todos los días, y el cupo gratis de Actions no da.
 - `fechaEnLaPagina`: una fecha escrita en el texto nuevo, si hay una que no sea un deadline futuro ni más vieja que 18 meses. Es lo que dice la página, no el día en que la vimos.
 
-`palabras` son las 15 palabras de peso de esos textos nuevos. El peso es en cuántos RFPs de la semana aparece cada una. Quedan afuera artículos, conectores y la jerga del detector (`request`, `proposal`, `rfp`, `licitación`, …). La hoja **Semana** muestra esa lista y los RFPs nuevos.
+`palabras` son las 15 palabras de peso de esos textos nuevos. El peso es en cuántos RFPs de la semana aparece cada una. Quedan afuera artículos, preposiciones, pronombres (`el`, `de`, `the`, `of`, `yo`) y la jerga del detector (`request`, `proposal`, `rfp`, `licitación`, …). Para sacar alguna más, agregala a [`config/ignoreWords.js`](config/ignoreWords.js). La hoja **Semana** muestra esa lista y los RFPs nuevos.
 
 La primera corrida, si no hay texto previo en el repo, marca todo como primera ejecución y no arma ventana ni palabras. Para no perder la comparación que ya vive en el servidor:
 
