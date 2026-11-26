@@ -15,7 +15,7 @@ En producción la API vive en `https://rfp.sociopublico.com` detrás de Traefik.
 5. Calcula un score y, si supera el umbral, escribe una alerta en disco.
 6. Expone esos resultados por una API REST de solo lectura.
 
-El spreadsheet se actualiza a mano (o con un activador): menú **RFP Monitor → Actualizar status y keywords**. El script pega esos campos desde `GET /api/urls` en la hoja `Sitios RFPs`.
+El spreadsheet se puede actualizar a mano (menú **RFP Monitor → Actualizar status y keywords**, que lee `GET /api/urls`) o solo, los lunes: GitHub Actions corre el scraper y le manda el resultado al Apps Script.
 
 En `https://rfp.sociopublico.com` hay una página de inicio que explica el flujo y muestra la última corrida.
 
@@ -53,7 +53,7 @@ Hasta que no corras el scraper, `/api/status` responde 404 y `/api/urls` un list
 
 ## Docker
 
-La imagen de producción es `registry.sociopublico.com/rfp-monitor`. El contenedor **solo levanta la API**. El scraper se corre aparte (cron, job, o `docker exec`).
+La imagen de producción es `registry.sociopublico.com/rfp-monitor`. El contenedor **solo levanta la API**. El scraper de los lunes corre en GitHub Actions, no en este contenedor. Un `docker exec` sigue sirviendo para una corrida manual en el servidor.
 
 ```bash
 docker compose up -d
@@ -124,7 +124,13 @@ Valores de `status` en `/api/urls`:
 
 ## Datos en disco
 
-`data/` está en `.gitignore`. Se crea sola en la primera corrida.
+`data/` se crea sola en la primera corrida. En git entra solo lo que la corrida siguiente necesita para comparar, y el HTML no:
+
+- `data/snapshots/text/` y `data/snapshots/metadata.json`
+- `data/history/url-history.jsonl`
+- `data/status/latest.json`
+
+El HTML, los diffs, los cambios crudos, las alertas y los logs siguen afuera.
 
 ```
 data/
@@ -158,8 +164,55 @@ Para instalar/actualizar el script:
 2. Pegá [`google-apps-script.gs`](google-apps-script.gs) y autorizá una vez.
 3. En la hoja aparece el menú **RFP Monitor → Actualizar status y keywords**.
 4. Un `onOpen` simple de Google **no puede** llamar a la API. Si querés que se actualice al abrir, creá un activador instalable sobre `updateStatusAndKeywords`.
+5. Para el lunes automático: en el proyecto de Apps Script, propiedad `SHEETS_WEBHOOK_TOKEN` (un secreto largo). Implementar → Aplicación web → ejecutar como vos, acceso cualquiera, y copiá la URL que termina en `/exec`.
+6. En el repo, secrets `SHEETS_WEBHOOK_URL` (esa URL) y `SHEETS_WEBHOOK_TOKEN` (el mismo valor). Sin esos secrets la corrida igual sube el reporte a git y no toca el Sheet.
 
-El script siempre escribe en `Sitios RFPs`, aunque estés parado en Keywords o en Propuestas (esas pestañas también tienen columna Link).
+El script siempre escribe en `Sitios RFPs`, aunque estés parado en Keywords o en Propuestas (esas pestañas también tienen columna Link). El POST del lunes, además, llena la hoja **Semana** y las columnas `aparecio entre` y `fecha en la pagina`. El menú manual no las borra.
+
+## Corrida de los lunes
+
+[`.github/workflows/scrape-monday.yml`](.github/workflows/scrape-monday.yml) corre en un runner de GitHub, no en tu computadora y no en `rfp.sociopublico.com`. El cron es lunes 14:00 UTC, que son las 11:00 en Argentina. También se puede disparar a mano desde la pestaña Actions. Recién corre solo cuando este workflow está en `main`.
+
+Cada corrida:
+
+1. Baja el CSV público, abre las ~170 URLs con Chrome y compara contra el texto de la corrida anterior.
+2. Commitea el texto nuevo, el historial y `reports/YYYY-MM-DD.json`.
+3. Si están los secrets, hace POST al Apps Script. Eso actualiza `status` y `keywords` de las filas que ya existen. No agrega organizaciones.
+
+`reports/YYYY-MM-DD.json` trae, por URL, `url`, `status` y `keywords`. En los cambios relevantes o posibles de esa semana suma:
+
+- `aparecioEntre`: entre la corrida anterior y esta. No es el día en que el sitio publicó el RFP. Para eso habría que scrapear todos los días, y el cupo gratis de Actions no da.
+- `fechaEnLaPagina`: una fecha escrita en el texto nuevo, si hay una que no sea un deadline futuro ni más vieja que 18 meses. Es lo que dice la página, no el día en que la vimos.
+
+`palabras` son las 15 palabras de peso de esos textos nuevos. El peso es en cuántos RFPs de la semana aparece cada una. Quedan afuera artículos, conectores y la jerga del detector (`request`, `proposal`, `rfp`, `licitación`, …). La hoja **Semana** muestra esa lista y los RFPs nuevos.
+
+La primera corrida, si no hay texto previo en el repo, marca todo como primera ejecución y no arma ventana ni palabras. Para no perder la comparación que ya vive en el servidor:
+
+```bash
+# en el servidor, desde el directorio del compose
+docker cp rfp-monitor:/app/data/snapshots/text ./data/snapshots/text
+docker cp rfp-monitor:/app/data/snapshots/metadata.json ./data/snapshots/metadata.json
+docker cp rfp-monitor:/app/data/history/url-history.jsonl ./data/history/url-history.jsonl
+```
+
+Esos tres archivos se commitean una vez, antes del primer lunes. El HTML no hace falta.
+
+## El sitio, sin el servidor
+
+La página de `rfp.sociopublico.com` no necesita un proceso prendido. Al terminar el scrape, `scripts/exportSite.js` copia la home y vuelca los JSON de Express a [`site/`](site/): `api/status.json`, `api/urls.json`, `api/alerts.json`, `api/errors.json`, `api/runs.json`, `api/history.json` (las últimas 20 líneas) y `health.json`. Si todavía no hubo corrida, no escribe `status.json` y la home muestra el estado vacío.
+
+[`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica esa carpeta en GitHub Pages cada vez que `site/` llega a `main`. No scrapea. El archivo `site/CNAME` deja el dominio listo para `rfp.sociopublico.com`.
+
+GitHub Pages en un repo privado de una organización pide GitHub Team o Enterprise. Si el plan no lo incluye, el deploy falla y el HTML igual queda en el repo. El camino es habilitar Pages en la organización, no volver a prender el droplet.
+
+Para apagar el servidor, cuando el deploy de Pages esté verde:
+
+1. En el repo, Settings → Pages → Source: GitHub Actions. La primera corrida del workflow lo pide si todavía no está.
+2. En el DNS de `rfp.sociopublico.com`, sacar el registro que apunta al droplet y poner los que indica GitHub para el dominio (el asistente de Pages los muestra al guardar el custom domain).
+3. En el Apps Script, cambiar `API_URL` a `https://rfp.sociopublico.com/api/urls.json` y volver a pegar el script. El menú manual lee el mismo JSON. El POST del lunes no usa esta URL.
+4. Recién ahí se puede apagar el droplet. `docker-compose.yml` se queda por si hay que volver atrás.
+
+`/api/text?url=` y `/api/changes?url=` no se publican: son un archivo por URL. El texto queda en `data/snapshots/text/`.
 
 ## Primera ejecución “falsa”
 
@@ -194,5 +247,4 @@ Más detalle de arquitectura, scoring y mapa de archivos: [`CONTEXTO_TECNICO.md`
 - Integración real con un LLM en `analyzeContent.js`
 - Notificaciones (mail, Slack, webhook) cuando sale una alerta
 - Dashboard; hoy la UI es el spreadsheet + la API
-- Tests automatizados
-- Scheduler dentro del repo: hay que disparar `npm run scrape` desde afuera
+- El día exacto en que cada sitio publicó un RFP. La corrida semanal solo puede decir entre qué dos lunes apareció el texto, más una fecha si la página la escribe

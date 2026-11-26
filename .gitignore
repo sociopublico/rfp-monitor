@@ -1,3 +1,14 @@
 /node_modules
-.history    
-data/
+.history
+.site-export-*
+data/*
+!data/snapshots/
+data/snapshots/*
+!data/snapshots/text/
+!data/snapshots/metadata.json
+!data/history/
+data/history/*
+!data/history/url-history.jsonl
+!data/status/
+data/status/*
+!data/status/latest.json

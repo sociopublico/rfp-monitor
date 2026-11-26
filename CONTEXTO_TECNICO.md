@@ -6,7 +6,7 @@ Documento de onboarding. Si es la primera vez que tocás este repo (humano o age
 
 Job de scraping + API de lectura que vigila páginas de convocatorias y marca cuándo el **texto nuevo** parece un RFP alineado a sociopúblico.
 
-No es un dashboard. No es n8n (el `package.json` se llama `n8n-proposals` por historia). No muta el spreadsheet desde Node: el Sheet tira de la API.
+No es un dashboard. No es n8n (el `package.json` se llama `n8n-proposals` por historia). El menú del Sheet sigue leyendo la API. Los lunes, `scripts/pushSheet.js` le manda el reporte a un Apps Script y ese script escribe las columnas.
 
 ## Piezas que existen
 
@@ -22,8 +22,11 @@ data/                   ← fuente de verdad local (gitignore)
         ▼
 api/server.js           ← Express, puerto 3000, solo GET
         │
-        ├─ Traefik → https://rfp.sociopublico.com
-        └─ google-apps-script.gs → columnas Status / Keywords del Sheet
+        ├─ Traefik → https://rfp.sociopublico.com   (se puede apagar)
+        └─ site/  ← el mismo HTML y los mismos JSON
+              └─ GitHub Pages → rfp.sociopublico.com
+
+google-apps-script.gs     ← columnas Status / Keywords del Sheet
 ```
 
 Dos procesos distintos:
@@ -33,7 +36,7 @@ Dos procesos distintos:
 | Scraper | CSV de URLs | `npm run scrape` | escribe `data/` |
 | API | `data/` | `npm start` | no escribe nada |
 
-Docker Compose solo levanta la API. El scraper hay que ejecutarlo aparte (`docker exec rfp-monitor node scripts/run.js` o un cron en el host).
+Docker Compose solo levanta la API. El scraper de los lunes es GitHub Actions (`.github/workflows/scrape-monday.yml`) y deja `site/` listo. `.github/workflows/pages.yml` publica esa carpeta. Un `docker exec rfp-monitor node scripts/run.js` sigue siendo la corrida manual en el servidor.
 
 ## Flujo de una corrida
 
@@ -69,12 +72,17 @@ scripts/score.js           changeScore + keywordScore + finalScore + alerta.
 scripts/historyLogger.js   JSONL append-only + getLastEventForUrl.
 scripts/alertManager.js    escribe alertas.
 scripts/updateStatus.js    latest.json.
-google-apps-script.gs      se pega a mano en el Sheet; pega Status/Keywords.
+scripts/publicationDate.js fecha dicha en el texto nuevo (no el día en que la vimos).
+scripts/weekWords.js       15 palabras de peso de los RFPs nuevos de la semana.
+scripts/weekReport.js      reports/YYYY-MM-DD.json
+scripts/pushSheet.js       POST del reporte al Apps Script, si hay secrets.
+scripts/exportSite.js      vuelca la home y los JSON de la API a site/.
+google-apps-script.gs      se pega a mano en el Sheet; pega Status/Keywords y, vía doPost, la hoja Semana.
 Dockerfile                 node:20-alpine + chromium del sistema. CMD = API.
 docker-compose.yml         Traefik + volumen data + shm 2gb.
 ```
 
-No hay tests. No hay scheduler. No hay `.env`: las URLs del Sheet están en el código.
+Hay tests de status, fechas, palabras y reporte (`npm test`). El scheduler es el workflow de los lunes, no un cron del servidor. No hay `.env`: las URLs del Sheet están en el código. Los secrets del webhook viven en GitHub y en las propiedades del Apps Script.
 
 ## Scoring (el código, no los comentarios viejos)
 
@@ -154,12 +162,12 @@ Logs del scraper van a stdout con prefijos (`📥`, `🔄`, `🎯`, `❌`). No h
 - `package.json` name `n8n-proposals` no coincide con el repo `rfp-monitor`.
 - `page.waitForTimeout` en `fetchSite.js` está deprecado en Puppeteer reciente; si se actualiza el paquete, puede romper.
 - Primera ejecución: `hasChanged = false` a propósito (no hay baseline). Las keywords se buscan en el texto completo.
-- `data/` no viaja en git ni en la imagen (`.dockerignore` excluye snapshots/diffs). En un contenedor nuevo, sin volumen, la API arranca vacía.
+- `data/` en git es solo el baseline de texto, `metadata.json`, el JSONL y `status/latest.json`. El HTML sigue ignorado. En un contenedor nuevo, sin volumen, la API arranca vacía: la imagen no trae `data/` (`.dockerignore`).
 
 ## Próximos pasos razonables (si alguien pregunta)
 
 1. LLM real (o clasificador) en `analyzeContent.js`, usando el texto de `data/changes/` no la página entera.
 2. Webhook/Slack cuando `generateAlert` corre.
-3. Cron documentado o un sidecar, para no depender de un `docker exec` manual.
+3. El día exacto de publicación. Hoy solo hay ventana entre corridas, más una fecha si el texto nuevo la escribe. Scrapear cada día se come el cupo de Actions.
 4. Extraer las URLs de Sheets a env vars.
 5. Tests de `calculateChangeRatio`, `calculateFinalScore` y el mapeo de status de `/api/urls`.

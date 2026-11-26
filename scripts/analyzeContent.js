@@ -248,5 +248,6 @@ function detectFutureDates(text) {
 module.exports = {
   analyzeRelevance,
   countKeywordHits,
-  detectFutureDates
+  detectFutureDates,
+  extractPublicationDate: require('./publicationDate').extractPublicationDate
 };

@@ -21,6 +21,8 @@ const {
 } = require('./score');
 const { generateAlert } = require('./alertManager');
 const { updateStatus } = require('./updateStatus');
+const { writeWeekReport } = require('./weekReport');
+const { exportSite } = require('./exportSite');
 const config = require('../config/profile');
 
 function extractErrorType(errorMessage) {
@@ -172,7 +174,9 @@ async function processUrl(page, url, existingMetadata) {
       relevanceScore: analysis.relevanceScore,
       finalScore: finalScore,
       keywordsInChanges: changeInfo.keywordsInChanges || [],
-      alertGenerated: alertGenerated
+      alertGenerated: alertGenerated,
+      previousBaselineAt: changeInfo.previousBaselineAt || null,
+      addedText: changeInfo.addedText || ''
     };
     
     // Log resumen
@@ -309,9 +313,10 @@ async function main() {
         }
       }
       
-      // 6. Combinar metadata existente con nueva (evitar duplicados)
+      // 6. Combinar metadata existente con nueva (evitar duplicados).
+      // addedText queda solo en memoria: el reporte lo usa y metadata.json no.
       const allMetadata = [...existingMetadata];
-      for (const meta of newMetadata) {
+      for (const meta of newMetadata.map(withoutAddedText)) {
         const exists = allMetadata.find(m => m.url === meta.url || m.slug === meta.slug);
         if (!exists) {
           allMetadata.push(meta);
@@ -350,6 +355,13 @@ async function main() {
       }
 
       try {
+        const written = await writeWeekReport({ runResults: newMetadata });
+        console.log(`📝 Reporte semanal: ${written.file}`);
+      } catch (reportError) {
+        console.error('⚠️  Error al escribir el reporte semanal:', reportError.message);
+      }
+
+      try {
         await runLog.finish({
           ...statusPayload,
           urls: newMetadata.map((m) => ({
@@ -366,6 +378,12 @@ async function main() {
         });
       } catch (runLogError) {
         console.error('⚠️  Error al guardar log de corrida:', runLogError.message);
+      }
+
+      try {
+        await exportSite();
+      } catch (siteError) {
+        console.error('⚠️  Error al exportar el sitio estático:', siteError.message);
       }
       
       // 10. Resumen final
@@ -397,6 +415,15 @@ async function main() {
     }
     process.exit(1);
   }
+}
+
+function withoutAddedText(meta) {
+  if (!meta || !Object.prototype.hasOwnProperty.call(meta, 'addedText')) {
+    return meta;
+  }
+  const copy = { ...meta };
+  delete copy.addedText;
+  return copy;
 }
 
 // Ejecutar si es llamado directamente

@@ -231,7 +231,8 @@ async function detectChange(url, slug, currentText) {
       textLength: currentNormalized.length,
       isFirstRun: true,
       keywordsInChanges: keywordsInChanges,
-      addedText: currentNormalized // Todo el texto es "nuevo"
+      addedText: currentNormalized, // Todo el texto es "nuevo"
+      previousBaselineAt: null
     };
   }
   
@@ -247,7 +248,8 @@ async function detectChange(url, slug, currentText) {
       textLength: currentNormalized.length,
       isFirstRun: false,
       keywordsInChanges: [],
-      addedText: ''
+      addedText: '',
+      previousBaselineAt: lastEvent?.timestamp || null
     };
   }
 
@@ -277,7 +279,8 @@ async function detectChange(url, slug, currentText) {
       textLength: currentNormalized.length,
       isFirstRun: false,
       keywordsInChanges: keywordsInChanges,
-      addedText: currentNormalized
+      addedText: currentNormalized,
+      previousBaselineAt: lastEvent?.timestamp || null
     };
   }
   
@@ -320,7 +323,8 @@ async function detectChange(url, slug, currentText) {
     textLength: currentNormalized.length,
     isFirstRun: false,
     keywordsInChanges: keywordsInChanges,
-    addedText: changeInfo.addedText || ''
+    addedText: changeInfo.addedText || '',
+    previousBaselineAt: lastEvent?.timestamp || null
   };
 }
 
