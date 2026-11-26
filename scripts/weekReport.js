@@ -4,6 +4,7 @@ const { extractPublicationDate } = require('./publicationDate');
 const { classifyUrlStatus, pickDisplayEvent, parseJsonl } = require('./urlStatus');
 const { rankWeekWords, tokensFromKeywords } = require('./weekWords');
 const config = require('../config/profile');
+const ignoreWords = require('../config/ignoreWords');
 
 const REPORTS_DIR = path.join(__dirname, '..', 'reports');
 
@@ -70,8 +71,9 @@ function summarizeHistory(events) {
  * @param {Array} input.runResults Resultados en memoria de esta corrida (traen addedText)
  * @param {Date} [input.generatedAt]
  * @param {string[]} [input.rfpKeywords]
+ * @param {string[]} [input.ignoreWords] Palabras extra a obviar. Por defecto config/ignoreWords.js
  */
-function buildWeekReport({ events, runResults, generatedAt = new Date(), rfpKeywords }) {
+function buildWeekReport({ events, runResults, generatedAt = new Date(), rfpKeywords, ignoreWords: ignored }) {
   const summaries = summarizeHistory(events);
   const byUrl = new Map((runResults || []).map((result) => [result.url, result]));
   const urls = summaries.map((summary) => {
@@ -106,7 +108,10 @@ function buildWeekReport({ events, runResults, generatedAt = new Date(), rfpKeyw
     .filter((text) => text.trim().length > 0);
 
   const palabras = rankWeekWords(documents, {
-    extraStopwords: tokensFromKeywords(rfpKeywords || config.rfpKeywords)
+    extraStopwords: [
+      ...tokensFromKeywords(rfpKeywords || config.rfpKeywords),
+      ...(ignored || ignoreWords)
+    ]
   });
 
   return {
