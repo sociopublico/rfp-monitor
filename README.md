@@ -201,7 +201,7 @@ Esos tres archivos se commitean una vez, antes del primer lunes. El HTML no hace
 
 La página de `rfp.sociopublico.com` no necesita un proceso prendido. Al terminar el scrape, `scripts/exportSite.js` copia la home y vuelca los JSON de Express a [`site/`](site/): `api/status.json`, `api/urls.json`, `api/alerts.json`, `api/errors.json`, `api/runs.json`, `api/history.json` (las últimas 20 líneas) y `health.json`. Si todavía no hubo corrida, no escribe `status.json` y la home muestra el estado vacío.
 
-[`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica esa carpeta en GitHub Pages cada vez que `site/` llega a `main`. No scrapea. El archivo `site/CNAME` deja el dominio listo para `rfp.sociopublico.com`.
+[`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica esa carpeta en GitHub Pages cuando `site/` llega a `main`, y también cuando termina bien **Scrape lunes**. El push del scraper usa el token de Actions y no dispara otros workflows por sí solo. No scrapea. El archivo `site/CNAME` deja el dominio listo para `rfp.sociopublico.com`.
 
 GitHub Pages en un repo privado de una organización pide GitHub Team o Enterprise. Si el plan no lo incluye, el deploy falla y el HTML igual queda en el repo. El camino es habilitar Pages en la organización, no volver a prender el droplet.
 
