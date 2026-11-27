@@ -1,4 +1,18 @@
 {
-  "total": 0,
-  "runs": []
+  "total": 1,
+  "runs": [
+    {
+      "runId": "2026-11-27T13-43-03-689Z",
+      "startedAt": "2026-11-27T13:43:03.689Z",
+      "finishedAt": "2026-11-27T14:23:37.617Z",
+      "totalUrls": 171,
+      "successCount": 170,
+      "errorCount": 1,
+      "changedCount": 0,
+      "alertsCount": 128,
+      "firstRunCount": 170,
+      "logFile": "logs/2026-11-27T13-43-03-689Z.log",
+      "summaryFile": "runs/2026-11-27T13-43-03-689Z.json"
+    }
+  ]
 }

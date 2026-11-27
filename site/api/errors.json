@@ -1,5 +1,18 @@
 {
-  "total": 0,
-  "returned": 0,
-  "errors": []
+  "total": 2,
+  "returned": 2,
+  "errors": [
+    {
+      "url": "https://www.linkedin.com/in/andrea2046/recent-activity/all/",
+      "timestamp": "2026-11-27T14:15:29.718Z",
+      "errorType": "frame_detached",
+      "errorMessage": "Error al obtener HTML de https://www.linkedin.com/in/andrea2046/recent-activity/all/: Execution context was destroyed, most likely because of a navigation."
+    },
+    {
+      "url": "https://avrdc.org/worldveg-procurement/",
+      "timestamp": "2026-11-27T14:05:44.633Z",
+      "errorType": "unknown",
+      "errorMessage": "Error al obtener HTML de https://avrdc.org/worldveg-procurement/: [unknown] net::ERR_HTTP2_PROTOCOL_ERROR at https://avrdc.org/worldveg-procurement/"
+    }
+  ]
 }

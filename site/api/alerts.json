@@ -1,1 +1,2946 @@
-[]
+[
+  {
+    "timestamp": "2026-11-27T14:23:14.275Z",
+    "url": "https://adquisiciones.anii.org.uy/vigentes/",
+    "slug": "adquisiciones.anii.org.uy_vigentes",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 562
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:23:03.161Z",
+    "url": "https://ikeafoundation.org/vacancies/",
+    "slug": "ikeafoundation.org_vacancies",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 6915
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:22:35.984Z",
+    "url": "https://www.newamerica.org/careers/",
+    "slug": "newamerica.org_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1868
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:22:24.255Z",
+    "url": "https://www.linkedin.com/in/alfonsinapenaloza/recent-activity/all/",
+    "slug": "linkedin.com_in_alfonsinapenaloza_recent_activity_all",
+    "finalScore": 79,
+    "reason": "🆕 Primera ejecución | 🎯 15 keyword(s) EN CAMBIOS | Final Score: 79/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 94,
+      "finalScore": 79
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 94,
+      "reason": "OPORTUNIDAD DETECTADA: 5 RFP keyword(s) encontrado(s); 8 keyword(s) de interés temático; 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 38096
+    },
+    "summary": "🆕 Primera ejecución | 🎯 15 keyword(s) EN CAMBIOS | Final Score: 79/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:21:57.342Z",
+    "url": "https://allsurvivorsproject.org/careers/",
+    "slug": "allsurvivorsproject.org_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 18,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 18,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1009
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:21:09.257Z",
+    "url": "https://www.thetrevorproject.org/careers/",
+    "slug": "thetrevorproject.org_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 21,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 21,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 7225
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:20:47.821Z",
+    "url": "https://southerncoalition.org/careers-internships/",
+    "slug": "southerncoalition.org_careers_internships",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 18,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 18,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 989
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:20:32.151Z",
+    "url": "https://www.possefoundation.org/jobs",
+    "slug": "possefoundation.org_jobs",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2026
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:20:18.470Z",
+    "url": "https://nwlc.org/jobs-at-nwlc/staff-positions/",
+    "slug": "nwlc.org_jobs_at_nwlc_staff_positions",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 24,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 24,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 3 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5431
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:19:07.779Z",
+    "url": "https://www.domesticworkers.org/about-ndwa/working-at-ndwa/open-positions-at-ndwa/",
+    "slug": "domesticworkers.org_about_ndwa_working_at_ndwa_open_positions_at_ndwa",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2095
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:18:54.881Z",
+    "url": "https://es.nclrights.org/about-us/jobs-opportunities/",
+    "slug": "es.nclrights.org_about_us_jobs_opportunities",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 7870
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:18:30.011Z",
+    "url": "https://futurecaucus.org/careers/",
+    "slug": "futurecaucus.org_careers",
+    "finalScore": 74,
+    "reason": "🆕 Primera ejecución | 🎯 8 keyword(s) EN CAMBIOS | Final Score: 74/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 70,
+      "finalScore": 74
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 70,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 5 keyword(s) de interés temático; 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 19893
+    },
+    "summary": "🆕 Primera ejecución | 🎯 8 keyword(s) EN CAMBIOS | Final Score: 74/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:18:18.845Z",
+    "url": "https://www.lisc.org/about-us/working-lisc/consulting-opportunities/",
+    "slug": "lisc.org_about_us_working_lisc_consulting_opportunities",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 9,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 9,
+      "reason": "Relevancia parcial: 3 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1074
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:18:06.670Z",
+    "url": "https://livinggoods.applytojob.com/apply/",
+    "slug": "livinggoods.applytojob.com_apply",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 530
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:17:54.291Z",
+    "url": "https://lambdalegal.org/careers/",
+    "slug": "lambdalegal.org_careers",
+    "finalScore": 73,
+    "reason": "🆕 Primera ejecución | 🎯 11 keyword(s) EN CAMBIOS | Final Score: 73/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 66,
+      "finalScore": 73
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 66,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 7 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 17985
+    },
+    "summary": "🆕 Primera ejecución | 🎯 11 keyword(s) EN CAMBIOS | Final Score: 73/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:17:40.508Z",
+    "url": "https://www.hopecu.org/product/work-with-hope/",
+    "slug": "hopecu.org_product_work_with_hope",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 45,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 45,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1576
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:17:28.871Z",
+    "url": "https://highlandercenter.org/job-board/",
+    "slug": "highlandercenter.org_job_board",
+    "finalScore": 71,
+    "reason": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 71/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 54,
+      "finalScore": 71
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 54,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 3 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5663
+    },
+    "summary": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 71/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:17:14.053Z",
+    "url": "https://ggsc.berkeley.edu/search?q=RFP",
+    "slug": "ggsc.berkeley.edu_search",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3781
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:17:01.830Z",
+    "url": "https://electioninnovation.org/careers/",
+    "slug": "electioninnovation.org_careers",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2712
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:16:38.735Z",
+    "url": "https://www.camelbackventures.org/careers/",
+    "slug": "camelbackventures.org_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 51,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 51,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5497
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:15:19.717Z",
+    "url": "https://mastercardfdn.org/",
+    "slug": "mastercardfdn.org",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 22,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 22,
+      "reason": "Relevancia parcial: 4 keyword(s) de interés temático; 7 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 8562
+    },
+    "summary": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:15:08.567Z",
+    "url": "https://www.laudesfoundation.org/latest/news-and-stories/",
+    "slug": "laudesfoundation.org_latest_news_and_stories",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 6,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 6,
+      "reason": "Relevancia parcial: 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1540
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:14:56.180Z",
+    "url": "https://odi.org/en/careers/consultancies/",
+    "slug": "odi.org_en_careers_consultancies",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 24,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 24,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 3 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1513
+    },
+    "summary": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:14:44.363Z",
+    "url": "https://rosaluxna.org/calls/",
+    "slug": "rosaluxna.org_calls",
+    "finalScore": 76,
+    "reason": "🆕 Primera ejecución | 🎯 11 keyword(s) EN CAMBIOS | Final Score: 76/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 82,
+      "finalScore": 76
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 82,
+      "reason": "OPORTUNIDAD DETECTADA: 7 RFP keyword(s) encontrado(s); 4 keyword(s) de interés temático; 7 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5055
+    },
+    "summary": "🆕 Primera ejecución | 🎯 11 keyword(s) EN CAMBIOS | Final Score: 76/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:14:32.059Z",
+    "url": "https://www.nyic.org/about-us/careers/",
+    "slug": "nyic.org_about_us_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1380
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:14:20.279Z",
+    "url": "https://plan-international.org/calls-tender/",
+    "slug": "plan-international.org_calls_tender",
+    "finalScore": 75,
+    "reason": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 76,
+      "finalScore": 75
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 76,
+      "reason": "OPORTUNIDAD DETECTADA: 4 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático; 2 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3377
+    },
+    "summary": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:14:06.969Z",
+    "url": "https://gardp.org/requests-for-proposals/",
+    "slug": "gardp.org_requests_for_proposals",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 43,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 43,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático; 6 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 8411
+    },
+    "summary": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:13:54.208Z",
+    "url": "https://www.clintonhealthaccess.org/resource-center/?_sft_category=rfp&sort_order=date+desc",
+    "slug": "clintonhealthaccess.org_resource_center",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 51,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 51,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3528
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:13:30.584Z",
+    "url": "https://jobs.crisisgroup.org/",
+    "slug": "jobs.crisisgroup.org",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 39,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 39,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 3 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5546
+    },
+    "summary": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:13:19.119Z",
+    "url": "https://www.iwmi.org/about/tenders/",
+    "slug": "iwmi.org_about_tenders",
+    "finalScore": 77,
+    "reason": "🆕 Primera ejecución | 🎯 14 keyword(s) EN CAMBIOS | Final Score: 77/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 87,
+      "finalScore": 77
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 87,
+      "reason": "OPORTUNIDAD DETECTADA: 5 RFP keyword(s) encontrado(s); 9 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 10903
+    },
+    "summary": "🆕 Primera ejecución | 🎯 14 keyword(s) EN CAMBIOS | Final Score: 77/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:13:07.629Z",
+    "url": "https://openai.com/index/people-first-ai-fund/",
+    "slug": "openai.com_index_people_first_ai_fund",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 6960
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:11:44.793Z",
+    "url": "https://www.oxfamintermon.org/es/licitaciones",
+    "slug": "oxfamintermon.org_es_licitaciones",
+    "finalScore": 72,
+    "reason": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 72/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 60,
+      "finalScore": 72
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 60,
+      "reason": "OPORTUNIDAD DETECTADA: 5 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 43239
+    },
+    "summary": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 72/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:11:32.704Z",
+    "url": "https://www.fawcettsociety.org.uk/work-with-us",
+    "slug": "fawcettsociety.org.uk_work_with_us",
+    "finalScore": 77,
+    "reason": "🆕 Primera ejecución | 🎯 11 keyword(s) EN CAMBIOS | Final Score: 77/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 85,
+      "finalScore": 77
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 85,
+      "reason": "OPORTUNIDAD DETECTADA: 4 RFP keyword(s) encontrado(s); 5 keyword(s) de interés temático; 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 7362
+    },
+    "summary": "🆕 Primera ejecución | 🎯 11 keyword(s) EN CAMBIOS | Final Score: 77/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:11:21.004Z",
+    "url": "https://procurement.iucn.org/",
+    "slug": "procurement.iucn.org",
+    "finalScore": 72,
+    "reason": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 72/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 60,
+      "finalScore": 72
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 60,
+      "reason": "OPORTUNIDAD DETECTADA: 4 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1496
+    },
+    "summary": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 72/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:11:08.434Z",
+    "url": "https://goodfoodpurchasing.org/about-the-center/#job-openings",
+    "slug": "goodfoodpurchasing.org_about_the_center",
+    "finalScore": 71,
+    "reason": "🆕 Primera ejecución | 🎯 25 keyword(s) EN CAMBIOS | Final Score: 71/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 55,
+      "finalScore": 71
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 55,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 21 keyword(s) de interés temático; 2 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 36177
+    },
+    "summary": "🆕 Primera ejecución | 🎯 25 keyword(s) EN CAMBIOS | Final Score: 71/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:10:54.621Z",
+    "url": "https://legalactionworldwide.org/careers/",
+    "slug": "legalactionworldwide.org_careers",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 279
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:10:41.505Z",
+    "url": "https://chanzuckerberg.com/careers/career-opportunities/?",
+    "slug": "chanzuckerberg.com_careers_career_opportunities",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 6625
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:10:16.905Z",
+    "url": "https://icleiusa.org/about/job-opportunities/",
+    "slug": "icleiusa.org_about_job_opportunities",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 6,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 6,
+      "reason": "Relevancia parcial: 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1338
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:09:02.554Z",
+    "url": "https://www.cgiar.org/how-we-work/vacancies/",
+    "slug": "cgiar.org_how_we_work_vacancies",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 40,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 40,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 5 keyword(s) de interés temático; 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4700
+    },
+    "summary": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:08:33.759Z",
+    "url": "https://berghof-foundation.org/about/opportunities/tenders",
+    "slug": "berghof-foundation.org_about_opportunities_tenders",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 43,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 43,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático; 2 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2191
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:08:20.138Z",
+    "url": "https://wellcome.org/what-we-do/our-work/contract-opportunities",
+    "slug": "wellcome.org_what_we_do_our_work_contract_opportunities",
+    "finalScore": 78,
+    "reason": "🆕 Primera ejecución | 🎯 23 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 90,
+      "finalScore": 78
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 90,
+      "reason": "OPORTUNIDAD DETECTADA: 7 RFP keyword(s) encontrado(s); 11 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 67521
+    },
+    "summary": "🆕 Primera ejecución | 🎯 23 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:08:08.294Z",
+    "url": "https://www.theacbf.org/work-us/procurement-and-consultancies",
+    "slug": "theacbf.org_work_us_procurement_and_consultancies",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 8 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 48,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 48,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 6 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 6536
+    },
+    "summary": "🆕 Primera ejecución | 🎯 8 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:07:40.391Z",
+    "url": "https://globalcommunities.org/join-us/careers/procurement-opportunities/",
+    "slug": "globalcommunities.org_join_us_careers_procurement_opportunities",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 691
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:06:47.413Z",
+    "url": "https://reliefweb.int/jobs",
+    "slug": "reliefweb.int_jobs",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 18,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 18,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2535
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:06:35.170Z",
+    "url": "https://www.fordfoundation.org/work/our-grants/grant-opportunities/",
+    "slug": "fordfoundation.org_work_our_grants_grant_opportunities",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3810
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:06:23.908Z",
+    "url": "https://gcgh.grandchallenges.org/challenges",
+    "slug": "gcgh.grandchallenges.org_challenges",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3483
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:06:11.439Z",
+    "url": "https://www.unicef.org/argentina/trabaja-con-unicef",
+    "slug": "unicef.org_argentina_trabaja_con_unicef",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2175
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:05:58.881Z",
+    "url": "https://es.wri.org/search?keys=convocatoria",
+    "slug": "es.wri.org_search",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4389
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:05:34.631Z",
+    "url": "https://www.wri.org/about/procurement-opportunities",
+    "slug": "wri.org_about_procurement_opportunities",
+    "finalScore": 73,
+    "reason": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 73/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 67,
+      "finalScore": 73
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 67,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 4 keyword(s) de interés temático; 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5812
+    },
+    "summary": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 73/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:05:22.029Z",
+    "url": "https://projects.worldbank.org/en/projects-operations/opportunities?srce=both",
+    "slug": "projects.worldbank.org_en_projects_operations_opportunities",
+    "finalScore": 78,
+    "reason": "🆕 Primera ejecución | 🎯 16 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 90,
+      "finalScore": 78
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 90,
+      "reason": "OPORTUNIDAD DETECTADA: 6 RFP keyword(s) encontrado(s); 10 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 15456
+    },
+    "summary": "🆕 Primera ejecución | 🎯 16 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:05:09.730Z",
+    "url": "https://www.womensworldbanking.org/about-us/careers/rfps-and-consultancies/",
+    "slug": "womensworldbanking.org_about_us_careers_rfps_and_consultancies",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 27,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 27,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 4 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2302
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:04:57.305Z",
+    "url": "https://williampennfoundation.org/employment-opportunities",
+    "slug": "williampennfoundation.org_employment_opportunities",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 21,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 21,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 911
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:04:46.101Z",
+    "url": "https://latin.weeffect.org/oportunidades-laborales/",
+    "slug": "latin.weeffect.org_oportunidades_laborales",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5827
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:04:08.301Z",
+    "url": "https://wallacefoundation.org/requests-proposals",
+    "slug": "wallacefoundation.org_requests_proposals",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 346
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:03:56.183Z",
+    "url": "https://job-boards.greenhouse.io/verainstituteofjustice",
+    "slug": "job-boards.greenhouse.io_verainstituteofjustice",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 989
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:03:45.270Z",
+    "url": "https://vera.submit.com/",
+    "slug": "vera.submit.com",
+    "finalScore": 73,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 73/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 63,
+      "finalScore": 73
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 63,
+      "reason": "OPORTUNIDAD DETECTADA: 4 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5080
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 73/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:03:31.821Z",
+    "url": "https://www.us-ignite.org/hiring/",
+    "slug": "us-ignite.org_hiring",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 39,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 39,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 3 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 16897
+    },
+    "summary": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:03:19.786Z",
+    "url": "http://compras.unvm.edu.ar/diaguita/aplicacion.php?ah=st67ae41bfdca0f3.90422205&ai=diaguita%7C%7C110000003&filtro=vigentes_proximas",
+    "slug": "compras.unvm.edu.ar_diaguita_aplicacion_php",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1889
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:03:06.166Z",
+    "url": "https://convocatorias-publicas.unsam.edu.ar/",
+    "slug": "convocatorias-publicas.unsam.edu.ar",
+    "finalScore": 71,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 71/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 55,
+      "finalScore": 71
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 55,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 2 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2969
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 71/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:02:51.885Z",
+    "url": "https://www.unilever.com/suppliers/becoming-a-unilever-supplier/",
+    "slug": "unilever.com_suppliers_becoming_a_unilever_supplier",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 27,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 27,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 4 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 10667
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:02:25.400Z",
+    "url": "https://procurement-notices.undp.org/",
+    "slug": "procurement-notices.undp.org",
+    "finalScore": 78,
+    "reason": "🆕 Primera ejecución | 🎯 29 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 90,
+      "finalScore": 78
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 90,
+      "reason": "OPORTUNIDAD DETECTADA: 9 RFP keyword(s) encontrado(s); 17 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 117513
+    },
+    "summary": "🆕 Primera ejecución | 🎯 29 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:01:49.150Z",
+    "url": "https://www.rockefellerfoundation.org/rfps/",
+    "slug": "rockefellerfoundation.org_rfps",
+    "finalScore": 75,
+    "reason": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 76,
+      "finalScore": 75
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 76,
+      "reason": "OPORTUNIDAD DETECTADA: 4 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático; 2 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3247
+    },
+    "summary": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:01:37.782Z",
+    "url": "https://fa-enmo-saasfaprod1.fa.ocs.oraclecloud.com/fscmUI/faces/NegotiationAbstracts?prcBuId=300000003071579&_adf.ctrl-state=wef2j7muh_1&_afrLoop=25982557049699933&_afrWindowMode=0&_afrWindowId=null&_afrFS=16&_afrMT=screen&_afrMFW=1366&_afrMFH=599&_afrMFDW=1366&_afrMFDH=768&_afrMFC=8&_afrMFCI=0&_afrMFM=0&_afrMFR=96&_afrMFG=0&_afrMFS=0&_afrMFO=0",
+    "slug": "fa-enmo-saasfaprod1.fa.ocs.oraclecloud.com_fscmUI_faces_NegotiationAbstracts",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 6,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 6,
+      "reason": "Relevancia parcial: 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3341
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:01:23.534Z",
+    "url": "http://splcenter.org/about/open-rfps/",
+    "slug": "splcenter.org_about_open_rfps",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 739
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:01:10.834Z",
+    "url": "https://ctserc.org/about/rfp",
+    "slug": "ctserc.org_about_rfp",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4110
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:00:56.980Z",
+    "url": "https://www.segib.org/contrataciones/",
+    "slug": "segib.org_contrataciones",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 43,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 43,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático; 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 69289
+    },
+    "summary": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:00:44.071Z",
+    "url": "https://www.seforall.org/get-involved/jobs-procurements",
+    "slug": "seforall.org_get_involved_jobs_procurements",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 40,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 40,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1418
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:00:33.136Z",
+    "url": "https://www.savethechildren.net/tenders",
+    "slug": "savethechildren.net_tenders",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 40,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 40,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 3 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 9694
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T14:00:20.685Z",
+    "url": "https://r4d.org/business-opportunities/",
+    "slug": "r4d.org_business_opportunities",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4311
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:59:52.024Z",
+    "url": "https://reproductivefreedomforall.org/join-our-team/requests-for-proposal/",
+    "slug": "reproductivefreedomforall.org_join_our_team_requests_for_proposal",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 48,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 48,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2623
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:59:40.359Z",
+    "url": "https://razomwestand.com/work-with-us/",
+    "slug": "razomwestand.com_work_with_us",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 13,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 13,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático; 3 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 6157
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:59:27.222Z",
+    "url": "https://raisingvoices.org/jobs/",
+    "slug": "raisingvoices.org_jobs",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1037
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:59:15.306Z",
+    "url": "https://www.pwc.com/us/en/about-us/procurement.html",
+    "slug": "pwc.com_us_en_about_us_procurement_html",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 21,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 21,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 6548
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:59:02.863Z",
+    "url": "https://www.pewtrusts.org/en/about/current-contract-and-grant-opportunities",
+    "slug": "pewtrusts.org_en_about_current_contract_and_grant_opportunities",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 45,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 45,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4970
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:58:34.930Z",
+    "url": "https://www.phf.org.uk/about/working-for-us/current-jobs-and-opportunities",
+    "slug": "phf.org.uk_about_working_for_us_current_jobs_and_opportunities",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 902
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:58:22.891Z",
+    "url": "https://www.partners.net/es/get-involved/rfps/",
+    "slug": "partners.net_es_get_involved_rfps",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 45,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 45,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1284
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:57:58.357Z",
+    "url": "https://www.padf.org/procurement-opportunities/",
+    "slug": "padf.org_procurement_opportunities",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 799
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:57:45.636Z",
+    "url": "https://supplycentre.oxfam.org.uk/oxfam-tender-advertisements/",
+    "slug": "supplycentre.oxfam.org.uk_oxfam_tender_advertisements",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 18,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 18,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 8139
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:57:32.922Z",
+    "url": "https://procurement.osce.org/tenders",
+    "slug": "procurement.osce.org_tenders",
+    "finalScore": 75,
+    "reason": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 73,
+      "finalScore": 75
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 73,
+      "reason": "OPORTUNIDAD DETECTADA: 5 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático; 2 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3170
+    },
+    "summary": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:57:19.569Z",
+    "url": "https://www.open-contracting.org/about/work/",
+    "slug": "open-contracting.org_about_work",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 21,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 21,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1348
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:57:08.138Z",
+    "url": "https://onthinktanks.org/jobsboard/",
+    "slug": "onthinktanks.org_jobsboard",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 9 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 52,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 52,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 4 keyword(s) de interés temático; 5 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 9839
+    },
+    "summary": "🆕 Primera ejecución | 🎯 9 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:56:56.420Z",
+    "url": "https://www.opengovpartnership.org/consultants-contracts/",
+    "slug": "opengovpartnership.org_consultants_contracts",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 24,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 24,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 3 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 526
+    },
+    "summary": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:56:44.475Z",
+    "url": "https://oei.int/licitaciones-y-convocatorias/",
+    "slug": "oei.int_licitaciones_y_convocatorias",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5908
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:56:14.711Z",
+    "url": "https://www.obama.org/vendor-information/",
+    "slug": "obama.org_vendor_information",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 6256
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:55:49.632Z",
+    "url": "https://www.ndi.org/careers",
+    "slug": "ndi.org_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 8 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 48,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 48,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 6 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3594
+    },
+    "summary": "🆕 Primera ejecución | 🎯 8 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:55:35.834Z",
+    "url": "https://naturapanama.org/convocatorias/#consultorias",
+    "slug": "naturapanama.org_convocatorias",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 7857
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:55:24.211Z",
+    "url": "https://www.nasscomfoundation.org/requestproposal",
+    "slug": "nasscomfoundation.org_requestproposal",
+    "finalScore": 74,
+    "reason": "🆕 Primera ejecución | 🎯 11 keyword(s) EN CAMBIOS | Final Score: 74/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 69,
+      "finalScore": 74
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 69,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 8 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5559
+    },
+    "summary": "🆕 Primera ejecución | 🎯 11 keyword(s) EN CAMBIOS | Final Score: 74/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:55:12.165Z",
+    "url": "https://www.un.org/Depts/ptd/tender",
+    "slug": "un.org_Depts_ptd_tender",
+    "finalScore": 75,
+    "reason": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 73,
+      "finalScore": 75
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 73,
+      "reason": "OPORTUNIDAD DETECTADA: 5 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático; 3 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 8752
+    },
+    "summary": "🆕 Primera ejecución | 🎯 6 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:55:00.124Z",
+    "url": "https://www.metropolis.org/tenders/",
+    "slug": "metropolis.org_tenders",
+    "finalScore": 80,
+    "reason": "🆕 Primera ejecución | 🎯 16 keyword(s) EN CAMBIOS | Final Score: 80/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 100,
+      "finalScore": 80
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 100,
+      "reason": "OPORTUNIDAD DETECTADA: 4 RFP keyword(s) encontrado(s); 11 keyword(s) de interés temático; 2 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 11828
+    },
+    "summary": "🆕 Primera ejecución | 🎯 16 keyword(s) EN CAMBIOS | Final Score: 80/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:54:47.452Z",
+    "url": "https://menengage.org/work-with-us",
+    "slug": "menengage.org_work_with_us",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 595
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:54:35.679Z",
+    "url": "https://www.mckinsey.com/careers/search-jobs",
+    "slug": "mckinsey.com_careers_search_jobs",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 9533
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:54:22.902Z",
+    "url": "https://www.luminategroup.com/",
+    "slug": "luminategroup.com",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 33,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 6 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4826
+    },
+    "summary": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:54:09.646Z",
+    "url": "https://jaeurope.org/tenders",
+    "slug": "jaeurope.org_tenders",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2369
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:53:52.396Z",
+    "url": "https://www.rescue.org/procurement-policies-and-bid-opportunities",
+    "slug": "rescue.org_procurement_policies_and_bid_opportunities",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4779
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:53:23.352Z",
+    "url": "https://www.independentdiplomat.org/about-us/employment",
+    "slug": "independentdiplomat.org_about_us_employment",
+    "finalScore": 80,
+    "reason": "🆕 Primera ejecución | 🎯 20 keyword(s) EN CAMBIOS | Final Score: 80/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 100,
+      "finalScore": 80
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 100,
+      "reason": "OPORTUNIDAD DETECTADA: 7 RFP keyword(s) encontrado(s); 11 keyword(s) de interés temático; 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 23127
+    },
+    "summary": "🆕 Primera ejecución | 🎯 20 keyword(s) EN CAMBIOS | Final Score: 80/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:53:01.350Z",
+    "url": "https://webapps.ilo.org/webcommon/php/ungm-rss.php",
+    "slug": "webapps.ilo.org_webcommon_php_ungm_rss_php",
+    "finalScore": 80,
+    "reason": "🆕 Primera ejecución | 🎯 26 keyword(s) EN CAMBIOS | Final Score: 80/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 100,
+      "finalScore": 80
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 100,
+      "reason": "OPORTUNIDAD DETECTADA: 7 RFP keyword(s) encontrado(s); 16 keyword(s) de interés temático; 8 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 37887
+    },
+    "summary": "🆕 Primera ejecución | 🎯 26 keyword(s) EN CAMBIOS | Final Score: 80/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:52:49.540Z",
+    "url": "https://idrc-crdi.ca/",
+    "slug": "idrc-crdi.ca",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1504
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:52:38.121Z",
+    "url": "http://idrc-crdi.ca/en/funding",
+    "slug": "idrc-crdi.ca_en_funding",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2551
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:52:26.353Z",
+    "url": "https://www.idinsight.org/about/careers/",
+    "slug": "idinsight.org_about_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 18,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 18,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 6662
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:52:13.778Z",
+    "url": "https://www.idea.int/procurement-and-tenders",
+    "slug": "idea.int_procurement_and_tenders",
+    "finalScore": 78,
+    "reason": "🆕 Primera ejecución | 🎯 14 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 88,
+      "finalScore": 78
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 88,
+      "reason": "OPORTUNIDAD DETECTADA: 8 RFP keyword(s) encontrado(s); 6 keyword(s) de interés temático; 2 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 8826
+    },
+    "summary": "🆕 Primera ejecución | 🎯 14 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:52:01.658Z",
+    "url": "https://www.ungm.org/Public/Notice",
+    "slug": "ungm.org_Public_Notice",
+    "finalScore": 73,
+    "reason": "🆕 Primera ejecución | 🎯 8 keyword(s) EN CAMBIOS | Final Score: 73/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 66,
+      "finalScore": 73
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 66,
+      "reason": "OPORTUNIDAD DETECTADA: 6 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 10597
+    },
+    "summary": "🆕 Primera ejecución | 🎯 8 keyword(s) EN CAMBIOS | Final Score: 73/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:51:49.503Z",
+    "url": "https://www.hotosm.org/rfps/",
+    "slug": "hotosm.org_rfps",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 51,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 51,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1555
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:51:36.811Z",
+    "url": "https://iaayou.fa.ocs.oraclecloud.com/fscmUI/faces/NegotiationAbstracts?prcBuId=300000003621906&_afrLoop=22282797400833752&_afrWindowMode=0&_afrWindowId=null&_adf.ctrl-state=5lbt0reoo_1&_afrFS=16&_afrMT=screen&_afrMFW=1280&_afrMFH=665&_afrMFDW=1280&_afrMFDH=800&_afrMFC=8&_afrMFCI=0&_afrMFM=0&_afrMFR=144&_afrMFG=0&_afrMFS=0&_afrMFO=0",
+    "slug": "iaayou.fa.ocs.oraclecloud.com_fscmUI_faces_NegotiationAbstracts",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4415
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:51:22.161Z",
+    "url": "https://globaldatabarometer.org/news-stories/",
+    "slug": "globaldatabarometer.org_news_stories",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 12,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 12,
+      "reason": "Relevancia parcial: 4 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1141
+    },
+    "summary": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:51:09.771Z",
+    "url": "https://www.gavi.org/our-alliance/work-us/rfps-eois-and-consulting-opportunities",
+    "slug": "gavi.org_our_alliance_work_us_rfps_eois_and_consulting_opportunities",
+    "finalScore": 72,
+    "reason": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 72/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 58,
+      "finalScore": 72
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 58,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático; 2 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 3005
+    },
+    "summary": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 72/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:50:45.310Z",
+    "url": "https://www.gainhealth.org/requests-for-proposals",
+    "slug": "gainhealth.org_requests_for_proposals",
+    "finalScore": 79,
+    "reason": "🆕 Primera ejecución | 🎯 15 keyword(s) EN CAMBIOS | Final Score: 79/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 94,
+      "finalScore": 79
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 94,
+      "reason": "OPORTUNIDAD DETECTADA: 7 RFP keyword(s) encontrado(s); 8 keyword(s) de interés temático; 3 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 10482
+    },
+    "summary": "🆕 Primera ejecución | 🎯 15 keyword(s) EN CAMBIOS | Final Score: 79/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:50:32.957Z",
+    "url": "https://funpadem.org/index.php/consultorias/",
+    "slug": "funpadem.org_index_php_consultorias",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1311
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:50:20.893Z",
+    "url": "https://www.fundaciononce.es/es/contrataciones/contrataciones-programas-operativos-fse-y-otras-contrataciones",
+    "slug": "fundaciononce.es_es_contrataciones_contrataciones_programas_operativos_fse_y_otras_contrataciones",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 92745
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:49:43.879Z",
+    "url": "https://fosfeminista.org/careers/",
+    "slug": "fosfeminista.org_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 12,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 12,
+      "reason": "Relevancia parcial: 4 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5631
+    },
+    "summary": "🆕 Primera ejecución | 🎯 4 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:49:29.814Z",
+    "url": "https://eiti.org/call-tenders",
+    "slug": "eiti.org_call_tenders",
+    "finalScore": 78,
+    "reason": "🆕 Primera ejecución | 🎯 12 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 91,
+      "finalScore": 78
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 91,
+      "reason": "OPORTUNIDAD DETECTADA: 5 RFP keyword(s) encontrado(s); 7 keyword(s) de interés temático; 8 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5733
+    },
+    "summary": "🆕 Primera ejecución | 🎯 12 keyword(s) EN CAMBIOS | Final Score: 78/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:49:18.060Z",
+    "url": "https://www.eiturbanmobility.eu/join-us/request-for-proposals/",
+    "slug": "eiturbanmobility.eu_join_us_request_for_proposals",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 52,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 52,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 4 keyword(s) de interés temático; 5 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5900
+    },
+    "summary": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:49:05.272Z",
+    "url": "https://datadrive2030.co.za/news-and-opportunities/?e-filter-f75ab9c-category=opportunities",
+    "slug": "datadrive2030.co.za_news_and_opportunities",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 15,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 15,
+      "reason": "Relevancia parcial: 5 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2103
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:48:37.529Z",
+    "url": "https://www.crdfglobal.org/rfp/",
+    "slug": "crdfglobal.org_rfp",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 39,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 39,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 3 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 6040
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:48:26.015Z",
+    "url": "https://www.conservation.org/procurement-opportunities",
+    "slug": "conservation.org_procurement_opportunities",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 11369
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:48:13.762Z",
+    "url": "https://www.cleanairfund.org/about-us/jobs/consultancy-rfps/",
+    "slug": "cleanairfund.org_about_us_jobs_consultancy_rfps",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1746
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:48:01.925Z",
+    "url": "https://www.clasp.ngo/careers/",
+    "slug": "clasp.ngo_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 10 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 49,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 49,
+      "reason": "Relevancia parcial: 1 RFP keyword(s) encontrado(s); 8 keyword(s) de interés temático; 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 987615
+    },
+    "summary": "🆕 Primera ejecución | 🎯 10 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:47:48.352Z",
+    "url": "https://www.citigroup.com/global/foundation/apply-for-funding",
+    "slug": "citigroup.com_global_foundation_apply_for_funding",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 33,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 33,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4218
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:47:24.434Z",
+    "url": "https://www.cdcfoundation.org/request-for-proposals",
+    "slug": "cdcfoundation.org_request_for_proposals",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 45,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 45,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1731
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:47:12.373Z",
+    "url": "https://www.care.org/about-us/contact-us/request-for-proposals/",
+    "slug": "care.org_about_us_contact_us_request_for_proposals",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1373
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:46:58.742Z",
+    "url": "https://www.caf.com/en/work-with-us/calls/",
+    "slug": "caf.com_en_work_with_us_calls",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 45,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 45,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 5 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2151
+    },
+    "summary": "🆕 Primera ejecución | 🎯 7 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:46:47.428Z",
+    "url": "https://www.caf.com/es/trabaja-con-nosotros/convocatorias/",
+    "slug": "caf.com_es_trabaja_con_nosotros_convocatorias",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 45,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 45,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 2441
+    },
+    "summary": "🆕 Primera ejecución | 🎯 3 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:45:07.053Z",
+    "url": "https://beo-procurement.iadb.org/home",
+    "slug": "beo-procurement.iadb.org_home",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 9 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 51,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 51,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s); 7 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 7477
+    },
+    "summary": "🆕 Primera ejecución | 🎯 9 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:44:55.118Z",
+    "url": "https://avina.bamboohr.com/careers",
+    "slug": "avina.bamboohr.com_careers",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 625
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:44:41.389Z",
+    "url": "https://aslm.org/opportunities/#procurement-opportunities",
+    "slug": "aslm.org_opportunities",
+    "finalScore": 50,
+    "reason": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 3,
+      "finalScore": 50
+    },
+    "analysis": {
+      "hasOpportunity": false,
+      "relevanceScore": 3,
+      "reason": "Relevancia parcial: 1 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 1288
+    },
+    "summary": "🆕 Primera ejecución | 🎯 1 keyword(s) EN CAMBIOS | Final Score: 50/100 | ⚠️ RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:44:23.775Z",
+    "url": "https://acpet.ashoka.edu.in/rfp/",
+    "slug": "acpet.ashoka.edu.in_rfp",
+    "finalScore": 77,
+    "reason": "🆕 Primera ejecución | 🎯 12 keyword(s) EN CAMBIOS | Final Score: 77/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 85,
+      "finalScore": 77
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 85,
+      "reason": "OPORTUNIDAD DETECTADA: 7 RFP keyword(s) encontrado(s); 5 keyword(s) de interés temático; 1 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 4924
+    },
+    "summary": "🆕 Primera ejecución | 🎯 12 keyword(s) EN CAMBIOS | Final Score: 77/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:44:12.889Z",
+    "url": "https://www.amnesty.org.uk/jobs/consultancies",
+    "slug": "amnesty.org.uk_jobs_consultancies",
+    "finalScore": 75,
+    "reason": "🆕 Primera ejecución | 🎯 12 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 76,
+      "finalScore": 75
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 76,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 7 keyword(s) de interés temático; 3 fecha(s) futura(s) detectada(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 8429
+    },
+    "summary": "🆕 Primera ejecución | 🎯 12 keyword(s) EN CAMBIOS | Final Score: 75/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:43:49.387Z",
+    "url": "https://www.afi-global.org/contact-us/procurement/",
+    "slug": "afi-global.org_contact_us_procurement",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 51,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 51,
+      "reason": "OPORTUNIDAD DETECTADA: 3 RFP keyword(s) encontrado(s); 2 keyword(s) de interés temático"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 674
+    },
+    "summary": "🆕 Primera ejecución | 🎯 5 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  },
+  {
+    "timestamp": "2026-11-27T13:43:35.112Z",
+    "url": "https://www.aecid.es/es/la-aecid/anuncios",
+    "slug": "aecid.es_es_la_aecid_anuncios",
+    "finalScore": 70,
+    "reason": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE",
+    "scores": {
+      "changeScore": 0,
+      "relevanceScore": 30,
+      "finalScore": 70
+    },
+    "analysis": {
+      "hasOpportunity": true,
+      "relevanceScore": 30,
+      "reason": "OPORTUNIDAD DETECTADA: 2 RFP keyword(s) encontrado(s)"
+    },
+    "change": {
+      "hasChanged": false,
+      "changeRatio": 0,
+      "textLength": 5290
+    },
+    "summary": "🆕 Primera ejecución | 🎯 2 keyword(s) EN CAMBIOS | Final Score: 70/100 | 🔥 MUY RELEVANTE"
+  }
+]

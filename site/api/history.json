@@ -1,4 +1,417 @@
 {
-  "total": 0,
-  "events": []
+  "total": 20,
+  "events": [
+    {
+      "url": "https://americas.britishcouncil.org/work-with-us/jobs/opportunities-suppliers",
+      "timestamp": "2026-11-27T14:23:35.465Z",
+      "status": "success",
+      "textHash": "e6360bb1e7f35db64f98e66bb046d9589f95c61876983a4136c4a6a11e246f18",
+      "textLength": 7272,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 0,
+      "foundKeywords": [],
+      "keywordsInChanges": [],
+      "finalScore": 0
+    },
+    {
+      "url": "https://www.governance.ai/opportunities",
+      "timestamp": "2026-11-27T14:23:24.275Z",
+      "status": "success",
+      "textHash": "1a7267c4a8b54b6b099aaa360637d06f21478187afd3331f3c9759a4e4655e78",
+      "textLength": 114,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 0,
+      "foundKeywords": [],
+      "keywordsInChanges": [],
+      "finalScore": 0
+    },
+    {
+      "url": "https://adquisiciones.anii.org.uy/vigentes/",
+      "timestamp": "2026-11-27T14:23:13.164Z",
+      "status": "success",
+      "textHash": "b51ffc90615b523db093c0aee97c91b43a7c921ea74063ef58e44d07886e2206",
+      "textLength": 562,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 1,
+      "foundKeywords": [
+        "llamado"
+      ],
+      "keywordsInChanges": [
+        "llamado"
+      ],
+      "finalScore": 50
+    },
+    {
+      "url": "https://ikeafoundation.org/vacancies/",
+      "timestamp": "2026-11-27T14:23:00.525Z",
+      "status": "success",
+      "textHash": "ca37bdd4f1ef6aeca866d243262bd90397cef11f6ff54b4b5dd9929aeaf62206",
+      "textLength": 6915,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 1,
+      "foundKeywords": [
+        "apply"
+      ],
+      "keywordsInChanges": [
+        "apply"
+      ],
+      "finalScore": 50
+    },
+    {
+      "url": "https://savethechildren.mx/jobs/",
+      "timestamp": "2026-11-27T14:22:45.987Z",
+      "status": "success",
+      "textHash": "7b5d0920c86b72bf9286c7d7ffa5793abcba7d899d60b9efff0945374deba3b4",
+      "textLength": 1848,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 0,
+      "foundKeywords": [],
+      "keywordsInChanges": [],
+      "finalScore": 0
+    },
+    {
+      "url": "https://www.newamerica.org/careers/",
+      "timestamp": "2026-11-27T14:22:34.256Z",
+      "status": "success",
+      "textHash": "9092c87a8bc6c68e815896bf907a8d64b91ae9cfe73dad2c16c02da6db646e81",
+      "textLength": 1868,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 3,
+      "foundKeywords": [
+        "democracy",
+        "open call",
+        "apply"
+      ],
+      "keywordsInChanges": [
+        "democracy",
+        "open call",
+        "apply"
+      ],
+      "finalScore": 70
+    },
+    {
+      "url": "https://www.linkedin.com/in/alfonsinapenaloza/recent-activity/all/",
+      "timestamp": "2026-11-27T14:22:20.276Z",
+      "status": "success",
+      "textHash": "fcfd64c0920e0dd9998425c68702ea1783bf74e1fe5282d9c05f97bc13cc6303",
+      "textLength": 38096,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 15,
+      "foundKeywords": [
+        "governance",
+        "metropolitan",
+        "research",
+        "inclusion",
+        "gender",
+        "inequality",
+        "democracy",
+        "human rights",
+        "deadline",
+        "apply",
+        "award",
+        "fecha límite",
+        "cierre",
+        "campaign",
+        "advocacy"
+      ],
+      "keywordsInChanges": [
+        "governance",
+        "metropolitan",
+        "research",
+        "inclusion",
+        "gender",
+        "inequality",
+        "democracy",
+        "human rights",
+        "deadline",
+        "apply",
+        "award",
+        "fecha límite",
+        "cierre",
+        "campaign",
+        "advocacy"
+      ],
+      "finalScore": 79
+    },
+    {
+      "url": "https://skoll.org/about/staff/#skolljobs",
+      "timestamp": "2026-11-27T14:22:07.344Z",
+      "status": "success",
+      "textHash": "0b3245113b0a4bda83a8dd453811cc6d2642440d65ddc08249f7b1d7c2617667",
+      "textLength": 2117,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 0,
+      "foundKeywords": [],
+      "keywordsInChanges": [],
+      "finalScore": 0
+    },
+    {
+      "url": "https://allsurvivorsproject.org/careers/",
+      "timestamp": "2026-11-27T14:21:54.876Z",
+      "status": "success",
+      "textHash": "450e1556973609efe9dcee29247cd07f9ed314fb72fe1afa7522645f5a93b1e8",
+      "textLength": 1009,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 2,
+      "foundKeywords": [
+        "gender",
+        "apply"
+      ],
+      "keywordsInChanges": [
+        "gender",
+        "apply"
+      ],
+      "finalScore": 70
+    },
+    {
+      "url": "https://www.linkedin.com/in/pierre-coupeau-b20b6964/recent-activity/all/",
+      "timestamp": "2026-11-27T14:21:42.663Z",
+      "status": "success",
+      "textHash": "029f87f7daf45c39db7e66f0f26ff60dccd1e997b0531361a288bca30f2d4cb7",
+      "textLength": 745,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 0,
+      "foundKeywords": [],
+      "keywordsInChanges": [],
+      "finalScore": 0
+    },
+    {
+      "url": "https://europeanclimatefoundation.occupop-careers.com/",
+      "timestamp": "2026-11-27T14:21:30.739Z",
+      "status": "success",
+      "textHash": "a045572bebed99d62bbc447c672bb847ef0d4a1d0793736c0ff36b028d9f957e",
+      "textLength": 34,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 0,
+      "foundKeywords": [],
+      "keywordsInChanges": [],
+      "finalScore": 0
+    },
+    {
+      "url": "https://apply.workable.com/world-central-kitchen/",
+      "timestamp": "2026-11-27T14:21:19.259Z",
+      "status": "success",
+      "textHash": "73f8732037dff6aaf9b93c4f2f861a689dde678d6e25505f2b92d4e4d37ce15d",
+      "textLength": 1030,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 0,
+      "foundKeywords": [],
+      "keywordsInChanges": [],
+      "finalScore": 0
+    },
+    {
+      "url": "https://www.thetrevorproject.org/careers/",
+      "timestamp": "2026-11-27T14:20:57.824Z",
+      "status": "success",
+      "textHash": "2005761eaedf69d536281063eb52b8c0f1925cbcccd52e924b7556eff6984ef5",
+      "textLength": 7225,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 3,
+      "foundKeywords": [
+        "research",
+        "gender",
+        "apply"
+      ],
+      "keywordsInChanges": [
+        "research",
+        "gender",
+        "apply"
+      ],
+      "finalScore": 70
+    },
+    {
+      "url": "https://southerncoalition.org/careers-internships/",
+      "timestamp": "2026-11-27T14:20:42.151Z",
+      "status": "success",
+      "textHash": "25c653393f0c1cf3cca56eebfa64e90cb28338f0bc096958ae5ef8e6df2ddb66",
+      "textLength": 989,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 2,
+      "foundKeywords": [
+        "equity",
+        "apply"
+      ],
+      "keywordsInChanges": [
+        "equity",
+        "apply"
+      ],
+      "finalScore": 70
+    },
+    {
+      "url": "https://www.possefoundation.org/jobs",
+      "timestamp": "2026-11-27T14:20:28.471Z",
+      "status": "success",
+      "textHash": "04ff5248ee86d83fcfc322b1a14410a073ba484445c17d29778dec343fe3837b",
+      "textLength": 2026,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 1,
+      "foundKeywords": [
+        "apply"
+      ],
+      "keywordsInChanges": [
+        "apply"
+      ],
+      "finalScore": 50
+    },
+    {
+      "url": "https://nwlc.org/jobs-at-nwlc/staff-positions/",
+      "timestamp": "2026-11-27T14:19:17.783Z",
+      "status": "success",
+      "textHash": "d8ca51adb9a8d672cc491608423405696835095c7bc830e2b2917c09e4888f20",
+      "textLength": 5431,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 5,
+      "foundKeywords": [
+        "transparency",
+        "equity",
+        "gender",
+        "apply",
+        "advocacy"
+      ],
+      "keywordsInChanges": [
+        "transparency",
+        "equity",
+        "gender",
+        "apply",
+        "advocacy"
+      ],
+      "finalScore": 70
+    },
+    {
+      "url": "https://www.domesticworkers.org/about-ndwa/working-at-ndwa/open-positions-at-ndwa/",
+      "timestamp": "2026-11-27T14:19:04.881Z",
+      "status": "success",
+      "textHash": "64dfa2df89fa01bb131c18566af60bc4ec568c0e9239334ab8b0008fc5f19eaa",
+      "textLength": 2095,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 2,
+      "foundKeywords": [
+        "civic engagement",
+        "campaign"
+      ],
+      "keywordsInChanges": [
+        "civic engagement",
+        "campaign"
+      ],
+      "finalScore": 70
+    },
+    {
+      "url": "https://es.nclrights.org/about-us/jobs-opportunities/",
+      "timestamp": "2026-11-27T14:18:52.500Z",
+      "status": "success",
+      "textHash": "21ec735f481f43123e2565be821c43157b5ea7c3e4b945b6d396457156e40ba2",
+      "textLength": 7870,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 1,
+      "foundKeywords": [
+        "gender"
+      ],
+      "keywordsInChanges": [
+        "gender"
+      ],
+      "finalScore": 50
+    },
+    {
+      "url": "https://www.naacpldf.org/about-us/careers/",
+      "timestamp": "2026-11-27T14:18:40.013Z",
+      "status": "success",
+      "textHash": "e34b41589a6f3cce5a48d8ae2a52ecaa4bec228e941e7a2ec9511917d316572e",
+      "textLength": 1260,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 0,
+      "foundKeywords": [],
+      "keywordsInChanges": [],
+      "finalScore": 3
+    },
+    {
+      "url": "https://futurecaucus.org/careers/",
+      "timestamp": "2026-11-27T14:18:28.847Z",
+      "status": "success",
+      "textHash": "4c84e840e6912d507123cc20b8a396dd59851bc58a78b7cea627d83d46fed455",
+      "textLength": 19893,
+      "hasChanged": false,
+      "isFirstRun": true,
+      "changeRatio": 0,
+      "changedChars": 0,
+      "keywordHits": 8,
+      "foundKeywords": [
+        "public policy",
+        "accountability",
+        "research",
+        "evaluation",
+        "democracy",
+        "apply",
+        "application",
+        "submission"
+      ],
+      "keywordsInChanges": [
+        "public policy",
+        "accountability",
+        "research",
+        "evaluation",
+        "democracy",
+        "apply",
+        "application",
+        "submission"
+      ],
+      "finalScore": 74
+    }
+  ]
 }
